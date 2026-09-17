@@ -16,11 +16,11 @@
  *      email     — the address to receive enquiries
  * ------------------------------------------------------------------ */
 const CONTACT_RAW = {
-  whatsapp: '971500000000', // PLACEHOLDER
+  whatsapp: '971504020908', // PLACEHOLDER
   instagram: 'asifbinhossain', // PLACEHOLDER
   facebook: 'asifbinhossain', // PLACEHOLDER
-  linkedin: 'asifbh', // confirmed
-  email: 'asif@example.com', // PLACEHOLDER
+  linkedin: 'https://www.linkedin.com/in/asifbh/', // confirmed
+  email: 'asif@hilfshipping.com', // PLACEHOLDER
 };
 
 /** Anything still matching these is a placeholder and is flagged in the console. */

@@ -19,7 +19,7 @@ const CONTACT_RAW = {
   whatsapp: '971504020908', // PLACEHOLDER
   instagram: 'asifbinhossain', // PLACEHOLDER
   facebook: 'asifbinhossain', // PLACEHOLDER
-  linkedin: 'https://www.linkedin.com/in/asifbh/', // confirmed
+  linkedin: 'asifbh', // confirmed
   email: 'asif@hilfshipping.com', // PLACEHOLDER
 };
 

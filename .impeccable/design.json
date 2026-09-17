@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-17T00:00:00.000Z",
+  "title": "Design System: Asif Bin Hossain — Dry Bulk Chartering",
+  "extensions": {
+    "colorMeta": {
+      "acid": {
+        "role": "primary",
+        "displayName": "Acid Yellow",
+        "canonical": "#fcff2a",
+        "tonalRamp": ["#2b2c00", "#454700", "#5f6200", "#7a7e00", "#9ba000", "#c8ce00", "#e6e900", "#fcff2a"]
+      },
+      "acid-press": {
+        "role": "primary",
+        "displayName": "Acid Press",
+        "canonical": "#e6e900",
+        "tonalRamp": ["#262700", "#3d3f00", "#565800", "#6f7200", "#8d9000", "#b4b800", "#d2d600", "#e6e900"]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Stone Ground",
+        "canonical": "#d3cfbe",
+        "tonalRamp": ["#2a2823", "#3f3d35", "#57544a", "#726e60", "#918d7c", "#b3ae9c", "#d3cfbe", "#eeebe1"]
+      },
+      "stone-raised": {
+        "role": "neutral",
+        "displayName": "Raised Stone",
+        "canonical": "#dcd9ca",
+        "tonalRamp": ["#2c2a25", "#413f37", "#5a574d", "#757164", "#949081", "#b8b4a4", "#dcd9ca", "#f2f0e8"]
+      },
+      "stone-raised-2": {
+        "role": "neutral",
+        "displayName": "Light Stone",
+        "canonical": "#e3e0d3",
+        "tonalRamp": ["#2e2c27", "#434139", "#5c5950", "#777367", "#969285", "#bbb7a9", "#e3e0d3", "#f5f4ee"]
+      },
+      "stone-sunk": {
+        "role": "neutral",
+        "displayName": "Sunk Stone",
+        "canonical": "#c7c3b1",
+        "tonalRamp": ["#282621", "#3b3931", "#524f46", "#6c685b", "#8a8675", "#a9a593", "#c7c3b1", "#e4e1d5"]
+      },
+      "stone-float": {
+        "role": "neutral",
+        "displayName": "Floating Stone",
+        "canonical": "rgba(203, 197, 183, 0.82)",
+        "tonalRamp": ["#26241f", "#39372f", "#4f4c42", "#686457", "#858171", "#a5a18e", "#cbc5b7", "#e7e3d9"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Warm Ink",
+        "canonical": "#14140f",
+        "tonalRamp": ["#0a0a07", "#14140f", "#26251c", "#3f3e33", "#565542", "#86846f", "#b3b1a0", "#e0dfd4"]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Ink Two",
+        "canonical": "#3f3e33",
+        "tonalRamp": ["#111009", "#1d1c14", "#2e2d23", "#3f3e33", "#565542", "#7c7a65", "#a8a690", "#d8d7c8"]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Ink Three",
+        "canonical": "#565542",
+        "tonalRamp": ["#15140e", "#232218", "#343222", "#454433", "#565542", "#7f7d64", "#aba992", "#dad9cb"]
+      },
+      "ink-4": {
+        "role": "neutral",
+        "displayName": "Ink Four",
+        "canonical": "#86846f",
+        "tonalRamp": ["#1b1a14", "#2c2b21", "#41402f", "#57553f", "#6e6c53", "#86846f", "#adab97", "#dcdbcf"]
+      },
+      "pitch": {
+        "role": "neutral",
+        "displayName": "Pitch",
+        "canonical": "#16160f",
+        "tonalRamp": ["#0b0b07", "#16160f", "#282719", "#3b3a26", "#535138", "#7a7757", "#aba887", "#dedbc4"]
+      },
+      "on-pitch": {
+        "role": "neutral",
+        "displayName": "On Pitch",
+        "canonical": "#ece9dc",
+        "tonalRamp": ["#2f2d25", "#454337", "#5e5b4c", "#7a7665", "#9a9683", "#c0bdaa", "#ece9dc", "#f8f7f0"]
+      },
+      "on-acid": {
+        "role": "neutral",
+        "displayName": "Ink on Acid",
+        "canonical": "#14140f",
+        "tonalRamp": ["#0a0a07", "#14140f", "#26251c", "#3f3e33", "#565542", "#86846f", "#b3b1a0", "#e0dfd4"]
+      },
+      "portrait-type": {
+        "role": "neutral",
+        "displayName": "Portrait Type White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#262626", "#3d3d3d", "#565656", "#737373", "#949494", "#bcbcbc", "#e2e2e2", "#ffffff"]
+      }
+    },
+    "typographyMeta": {
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "The hero name, one span per letter distributed edge to edge with space-between. No letter-spacing — tracking has no effect between flex items. min(42vw, 26svh) at 640px."
+      },
+      "wordmark-closing": {
+        "displayName": "Closing Wordmark",
+        "purpose": "The same word returning at scale over the contact block; clamp(3.4rem, 25vw, 8rem) on phone."
+      },
+      "display": {
+        "displayName": "Display Statement",
+        "purpose": "The Expertise sentence at 21ch, with inline capability chips set into it."
+      },
+      "headline": {
+        "displayName": "Hero Headline",
+        "purpose": "Three lines of white type over the portrait's shirt, above a radial ink scrim. Centred at every width."
+      },
+      "section-title": {
+        "displayName": "Section Title",
+        "purpose": "Every section head. A second step at clamp(2rem, 4.6vw, 3.5rem) sets the contact title."
+      },
+      "numeral": {
+        "displayName": "Display Numeral",
+        "purpose": "Journey years. Smaller outlined numeral steps: hero stats clamp(1.6rem, 2.6vw, 2.35rem), sheet tiles 1.6rem, rail stats 1.45rem."
+      },
+      "title": {
+        "displayName": "Card Title",
+        "purpose": "Card and column headings in Journey, Services and Voices."
+      },
+      "lead": { "displayName": "Lead", "purpose": "Section standfirsts, capped at 34ch." },
+      "body": { "displayName": "Body", "purpose": "The document default." },
+      "detail": { "displayName": "Detail", "purpose": "Card copy at 44ch; the button face at 700." },
+      "label": { "displayName": "Label", "purpose": "Uppercase rail links, hero nav links, sheet nav rows. The only uppercase in the system." },
+      "micro": { "displayName": "Micro", "purpose": "Plate meta — employer names, handles, footer legal, stat captions." }
+    },
+    "shadows": [
+      {
+        "name": "plate",
+        "value": "0 1px 2px rgba(32, 30, 18, 0.05), 0 10px 26px -10px rgba(32, 30, 18, 0.16)",
+        "purpose": "Every resting plate, the secondary button, the inline chip."
+      },
+      {
+        "name": "lift",
+        "value": "0 2px 5px rgba(32, 30, 18, 0.07), 0 26px 52px -14px rgba(32, 30, 18, 0.26)",
+        "purpose": "Hover on a plate, the expertise reveal card, the skip link."
+      },
+      {
+        "name": "acid",
+        "value": "0 2px 4px rgba(32, 30, 18, 0.14), 0 16px 34px -12px rgba(150, 152, 0, 0.5)",
+        "purpose": "Under acid surfaces only. The blur is olive, not black, so the yellow glows rather than smudges."
+      },
+      {
+        "name": "float",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.42), 0 2px 5px rgba(32, 30, 18, 0.08), 0 18px 38px -16px rgba(32, 30, 18, 0.26)",
+        "purpose": "The hero's two translucent stone plates, paired with backdrop-filter: blur(10px) saturate(1.1)."
+      },
+      {
+        "name": "sunk",
+        "value": "inset 0 1px 2px rgba(32, 30, 18, 0.12)",
+        "purpose": "The rail's copy-email strip — the one recessed control."
+      },
+      {
+        "name": "bar",
+        "value": "0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 2px 6px rgba(32, 30, 18, 0.1), 0 18px 40px -12px rgba(32, 30, 18, 0.34)",
+        "purpose": "The fixed mobile contact bar over a 16px backdrop blur."
+      }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default exponential ease-out for every state transition and reveal." },
+      { "name": "ease-soft", "value": "cubic-bezier(0.32, 0.72, 0, 1)", "purpose": "Declared alternate easing; currently unused in the build." },
+      { "name": "dur-1", "value": "180ms", "purpose": "Hover and colour changes." },
+      { "name": "dur-2", "value": "380ms", "purpose": "Transforms, shadows, sheet scrim, chip expansion." },
+      { "name": "dur-3", "value": "720ms", "purpose": "Rail slide-in, sheet slide, scroll reveals." },
+      { "name": "marquee", "value": "34s linear infinite", "purpose": "The rail's affiliations marquee; paused on hover and under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "640px" },
+      { "name": "tablet", "value": "900px" },
+      { "name": "services", "value": "980px" },
+      { "name": "rail", "value": "1180px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-acid",
+      "description": "The acid call to action — Get in Touch in the hero, the rail CTA, the contact block.",
+      "html": "<button class=\"ds-btn-acid\">Get in Touch</button>",
+      "css": ".ds-btn-acid { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.95rem 1.6rem; border-radius: 999px; background: #fcff2a; color: #14140f; font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: -0.01em; border: 0; cursor: pointer; box-shadow: 0 2px 4px rgba(32,30,18,0.14), 0 16px 34px -12px rgba(150,152,0,0.5); transition: transform 180ms cubic-bezier(0.16,1,0.3,1), box-shadow 380ms cubic-bezier(0.16,1,0.3,1), background-color 180ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-acid:hover { background: #e6e900; transform: translateY(-2px); box-shadow: 0 3px 6px rgba(32,30,18,0.16), 0 22px 44px -12px rgba(150,152,0,0.58); } .ds-btn-acid:focus-visible { outline: 2.5px solid #14140f; outline-offset: 3px; } .ds-btn-acid:active { transform: translateY(0); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-stone",
+      "description": "The stone counterpart, always paired to the right of the acid button.",
+      "html": "<button class=\"ds-btn-stone\">My Journey</button>",
+      "css": ".ds-btn-stone { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.95rem 1.6rem; border-radius: 999px; background: #e3e0d3; color: #14140f; font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: -0.01em; border: 0; cursor: pointer; box-shadow: 0 1px 2px rgba(32,30,18,0.05), 0 10px 26px -10px rgba(32,30,18,0.16); transition: transform 180ms cubic-bezier(0.16,1,0.3,1), box-shadow 380ms cubic-bezier(0.16,1,0.3,1), background-color 180ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-stone:hover { background: #eae7db; transform: translateY(-2px); box-shadow: 0 2px 5px rgba(32,30,18,0.07), 0 26px 52px -14px rgba(32,30,18,0.26); } .ds-btn-stone:focus-visible { outline: 2.5px solid #14140f; outline-offset: 3px; } .ds-btn-stone:active { transform: translateY(0); }"
+    },
+    {
+      "name": "Stone Plate",
+      "kind": "card",
+      "refersTo": "plate",
+      "description": "The one container in this system: raised warm stone, light top edge, diffuse warm shadow, lifting on hover.",
+      "html": "<article class=\"ds-plate\"><span class=\"ds-plate-year\">2022</span><h3 class=\"ds-plate-title\">Chartering Manager</h3><p class=\"ds-plate-body\">Running the desk: cargo and tonnage matched, laytime and demurrage read as a chartering input rather than an afterthought.</p></article>",
+      "css": ".ds-plate { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; max-width: 27rem; padding: 1.85rem; border-radius: 1.75rem; background: #dcd9ca; color: #14140f; font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; box-shadow: 0 1px 2px rgba(32,30,18,0.05), 0 10px 26px -10px rgba(32,30,18,0.16); transition: box-shadow 380ms cubic-bezier(0.16,1,0.3,1); } .ds-plate::before { content: ''; position: absolute; inset: 0; border-radius: inherit; border-top: 1px solid rgba(255,255,255,0.62); border-left: 1px solid rgba(255,255,255,0.28); pointer-events: none; } .ds-plate:hover { box-shadow: 0 2px 5px rgba(32,30,18,0.07), 0 26px 52px -14px rgba(32,30,18,0.26); } .ds-plate-year { color: #fcff2a; font-size: 3.15rem; font-weight: 700; line-height: 0.88; letter-spacing: -0.055em; -webkit-text-stroke: 1.4px #14140f; paint-order: stroke fill; } .ds-plate-title { margin: 0; font-size: 1.32rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.032em; } .ds-plate-body { margin: 0; font-size: 0.875rem; line-height: 1.58; color: #3f3e33; max-width: 44ch; }"
+    },
+    {
+      "name": "Floating Hero Plate",
+      "kind": "card",
+      "refersTo": "plate-float",
+      "description": "The hero's stat plate: the same stone material, translucent over a 10px blur, compositing a shade darker than the ground. Its numeral is outlined acid.",
+      "html": "<div class=\"ds-float\"><strong>9+</strong><span><em>Years in</em><em>dry bulk</em></span></div>",
+      "css": ".ds-float { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.8rem 1.25rem; border-radius: 1.15rem; background: rgba(203,197,183,0.82); backdrop-filter: blur(10px) saturate(1.1); -webkit-backdrop-filter: blur(10px) saturate(1.1); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; box-shadow: inset 0 1px 0 rgba(255,255,255,0.42), 0 2px 5px rgba(32,30,18,0.08), 0 18px 38px -16px rgba(32,30,18,0.26); } .ds-float strong { color: #fcff2a; font-size: 2.35rem; font-weight: 700; line-height: 0.9; letter-spacing: -0.05em; -webkit-text-stroke: 1.2px #14140f; paint-order: stroke fill; } .ds-float span { display: flex; flex-direction: column; font-size: 0.75rem; font-weight: 600; line-height: 1.22; color: #3f3e33; } .ds-float em { font-style: normal; }"
+    },
+    {
+      "name": "Inline Capability Chip",
+      "kind": "chip",
+      "refersTo": "chip-inline",
+      "description": "A light-stone tile with an acid glyph, set into the Expertise display sentence as an object. Inverts to ink-on-acid on hover or expand.",
+      "html": "<span class=\"ds-chipwrap\"><button class=\"ds-chip\" aria-expanded=\"false\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4.4 20.6V11.2\"/><path d=\"M9.8 20.6V4.6\"/><path d=\"M15.2 20.6v-6.2\"/><path d=\"M20.6 20.6V8.2\"/><path d=\"M2.6 20.6h18.8\"/></svg><span class=\"ds-chip-plus\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\"><path d=\"M12 5v14\"/><path d=\"M5 12h14\"/></svg></span></button></span>",
+      "css": ".ds-chipwrap { position: relative; display: inline-block; vertical-align: middle; margin: 0 0.12em; font-size: 4.05rem; } .ds-chip { display: inline-grid; place-items: center; position: relative; width: 1.5em; height: 1.06em; border-radius: 0.24em; background: #e3e0d3; color: #e6e900; border: 0; cursor: pointer; box-shadow: 0 1px 2px rgba(32,30,18,0.05), 0 10px 26px -10px rgba(32,30,18,0.16); transition: transform 380ms cubic-bezier(0.16,1,0.3,1), box-shadow 380ms cubic-bezier(0.16,1,0.3,1), background-color 380ms cubic-bezier(0.16,1,0.3,1); } .ds-chip > svg { width: 0.62em; height: 0.62em; } .ds-chip-plus { position: absolute; top: 0.13em; right: 0.16em; display: grid; place-items: center; opacity: 0.5; transition: opacity 380ms cubic-bezier(0.16,1,0.3,1); } .ds-chip-plus svg { width: 0.3em; height: 0.3em; } .ds-chipwrap:hover .ds-chip, .ds-chip[aria-expanded='true'], .ds-chip:focus-visible { transform: rotate(-5deg) scale(1.06); background: #fcff2a; color: #14140f; box-shadow: 0 2px 5px rgba(32,30,18,0.07), 0 26px 52px -14px rgba(32,30,18,0.26); } .ds-chipwrap:hover .ds-chip-plus, .ds-chip[aria-expanded='true'] .ds-chip-plus { opacity: 1; } .ds-chip:focus-visible { outline: 2.5px solid #14140f; outline-offset: 3px; }"
+    },
+    {
+      "name": "Rail Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "The sticky rail's section links: uppercase label pills on light stone, sliding right on hover, filling acid when active.",
+      "html": "<nav class=\"ds-railnav\" aria-label=\"Sections\"><a class=\"ds-raillink\" data-active=\"true\" href=\"#journey\">Journey</a><a class=\"ds-raillink\" href=\"#expertise\">Expertise</a><a class=\"ds-raillink\" href=\"#services\">Services</a></nav>",
+      "css": ".ds-railnav { display: flex; flex-direction: column; align-items: flex-start; gap: 0.28rem; padding: 0.6rem; border-radius: 1.75rem; background: #dcd9ca; box-shadow: 0 1px 2px rgba(32,30,18,0.05), 0 10px 26px -10px rgba(32,30,18,0.16); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; } .ds-raillink { display: inline-flex; align-items: center; gap: 0.42rem; padding: 0.36rem 0.72rem; border-radius: 999px; background: #e3e0d3; color: #14140f; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.055em; text-transform: uppercase; text-decoration: none; white-space: nowrap; box-shadow: 0 1px 2px rgba(32,30,18,0.07); transition: background-color 180ms cubic-bezier(0.16,1,0.3,1), transform 180ms cubic-bezier(0.16,1,0.3,1), box-shadow 380ms cubic-bezier(0.16,1,0.3,1); } .ds-raillink:hover { transform: translateX(3px); box-shadow: 0 2px 5px rgba(32,30,18,0.12); } .ds-raillink:focus-visible { outline: 2.5px solid #14140f; outline-offset: 3px; } .ds-raillink[data-active='true'] { background: #fcff2a; color: #14140f; box-shadow: 0 2px 5px rgba(32,30,18,0.13), 0 8px 18px -8px rgba(150,152,0,0.6); }"
+    },
+    {
+      "name": "Contact Route",
+      "kind": "custom",
+      "refersTo": "contact-route",
+      "description": "One of the five contact buttons in the contact block. The platform's own colour sweeps in from the left on hover.",
+      "html": "<a class=\"ds-route\" href=\"#\"><span class=\"ds-route-glyph\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" width=\"20\" height=\"20\"><path d=\"M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.04c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z\"/></svg></span><span class=\"ds-route-text\"><strong>LinkedIn</strong><span>/in/asifbh</span></span><span class=\"ds-route-arrow\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" width=\"18\" height=\"18\"><path d=\"M6.6 17.4 17.4 6.6\"/><path d=\"M8.6 6.6h8.8v8.8\"/></svg></span></a>",
+      "css": ".ds-route { --brand: #0a66c2; --brand-ink: #fff; position: relative; display: flex; align-items: center; gap: 0.9rem; width: 100%; max-width: 24rem; padding: 1.15rem 1.3rem; border-radius: 1.15rem; background: #dcd9ca; color: #14140f; text-decoration: none; overflow: hidden; font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; box-shadow: 0 1px 2px rgba(32,30,18,0.05), 0 10px 26px -10px rgba(32,30,18,0.16); transition: transform 180ms cubic-bezier(0.16,1,0.3,1), color 380ms cubic-bezier(0.16,1,0.3,1), box-shadow 380ms cubic-bezier(0.16,1,0.3,1); } .ds-route::before { content: ''; position: absolute; inset: 0; background: var(--brand); transform: scaleX(0); transform-origin: left; transition: transform 380ms cubic-bezier(0.16,1,0.3,1); } .ds-route > * { position: relative; z-index: 1; } .ds-route-glyph { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 0.8rem; background: rgba(32,30,18,0.07); transition: background-color 380ms cubic-bezier(0.16,1,0.3,1); } .ds-route-text { display: flex; flex-direction: column; gap: 0.12rem; min-width: 0; } .ds-route-text strong { font-size: 0.875rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; } .ds-route-text > span { font-size: 0.76rem; font-weight: 500; line-height: 1.3; color: #565542; transition: color 380ms cubic-bezier(0.16,1,0.3,1), opacity 380ms cubic-bezier(0.16,1,0.3,1); } .ds-route-arrow { margin-left: auto; display: grid; place-items: center; opacity: 0.45; transition: opacity 380ms cubic-bezier(0.16,1,0.3,1), transform 380ms cubic-bezier(0.16,1,0.3,1); } .ds-route:hover, .ds-route:focus-visible { color: var(--brand-ink); transform: translateY(-3px); box-shadow: 0 2px 5px rgba(32,30,18,0.07), 0 26px 52px -14px rgba(32,30,18,0.26); } .ds-route:hover::before, .ds-route:focus-visible::before { transform: scaleX(1); } .ds-route:hover .ds-route-glyph { background: rgba(255,255,255,0.22); } .ds-route:hover .ds-route-text > span { color: inherit; opacity: 0.85; } .ds-route:hover .ds-route-arrow { opacity: 1; transform: translate(3px, -3px); } .ds-route:focus-visible { outline: 2.5px solid #14140f; outline-offset: 3px; }"
+    },
+    {
+      "name": "Monogram Badge",
+      "kind": "custom",
+      "refersTo": "badge-monogram",
+      "description": "The journey card's employer monogram — the only pitch surface in the build, acid type on deep ink.",
+      "html": "<div class=\"ds-orgrow\"><span class=\"ds-badge\">WC</span><span class=\"ds-org\"><strong>Wealth Creation General Trading LLC</strong><span>Dubai, UAE</span></span></div>",
+      "css": ".ds-orgrow { display: flex; align-items: center; gap: 0.65rem; padding-top: 0.85rem; border-top: 1px solid rgba(28,26,16,0.07); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; } .ds-badge { display: grid; place-items: center; flex: none; width: 2.3rem; height: 2.3rem; border-radius: 0.65rem; background: #16160f; color: #fcff2a; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.02em; } .ds-org { display: flex; flex-direction: column; min-width: 0; } .ds-org strong { font-size: 0.79rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; color: #14140f; } .ds-org > span { font-size: 0.72rem; color: #565542; line-height: 1.3; }"
+    },
+    {
+      "name": "Trait List",
+      "kind": "custom",
+      "refersTo": "plate-float",
+      "description": "The hero's five traits on a floating stone plate, each with its own drawn mark at 2.4 stroke — weighted up from the icon set's 1.75 default.",
+      "html": "<ul class=\"ds-traits\"><li><svg viewBox=\"0 0 24 24\"><path d=\"M4.4 20.6V11.2\"/><path d=\"M9.8 20.6V4.6\"/><path d=\"M15.2 20.6v-6.2\"/><path d=\"M20.6 20.6V8.2\"/><path d=\"M2.6 20.6h18.8\"/></svg>Analytical</li><li><svg viewBox=\"0 0 24 24\"><path d=\"M12 2.6 4.4 5.8v5.4c0 4.7 3.2 8.4 7.6 10.2 4.4-1.8 7.6-5.5 7.6-10.2V5.8L12 2.6Z\"/></svg>Reliable</li><li><svg viewBox=\"0 0 24 24\"><path d=\"M9.2 11.4a3.7 3.7 0 1 0 0-7.4 3.7 3.7 0 0 0 0 7.4Z\"/><path d=\"M2.6 20.6c0-3.6 2.95-6.5 6.6-6.5s6.6 2.9 6.6 6.5\"/><path d=\"M16.4 4.5a3.7 3.7 0 0 1 0 6.8\"/></svg>Negotiator</li><li><svg viewBox=\"0 0 24 24\"><path d=\"M12 7.6v13.2\"/><path d=\"M12 6.3a2.15 2.15 0 1 0 0-4.3 2.15 2.15 0 0 0 0 4.3Z\"/><path d=\"M8.4 10.6h7.2\"/><path d=\"M3.6 13.4a8.4 8.4 0 0 0 16.8 0\"/></svg>Operator</li><li><svg viewBox=\"0 0 24 24\"><path d=\"M13.4 2.6 5.2 13.1h5.5l-.6 8.3 8.2-10.7h-5.5l.6-8.1Z\"/></svg>Decisive</li></ul>",
+      "css": ".ds-traits { list-style: none; margin: 0; padding: 0.9rem 1.15rem; display: flex; flex-direction: column; gap: 0.34rem; width: fit-content; border-radius: 1.15rem; background: rgba(203,197,183,0.8); backdrop-filter: blur(10px) saturate(1.1); -webkit-backdrop-filter: blur(10px) saturate(1.1); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 5px rgba(32,30,18,0.08), 0 18px 38px -16px rgba(32,30,18,0.26); } .ds-traits li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; font-weight: 600; white-space: nowrap; color: #14140f; } .ds-traits svg { width: 16px; height: 16px; flex: none; fill: none; stroke: #fcff2a; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 0.5px rgba(32,30,18,0.55)); }"
+    },
+    {
+      "name": "Sheet Stat Tile",
+      "kind": "card",
+      "refersTo": "stat-tile",
+      "description": "The mobile sheet's foot: sunk-stone tiles carrying outlined acid numerals.",
+      "html": "<div class=\"ds-tiles\"><div><strong>9+</strong><span>Years in dry bulk</span></div><div><strong>2</strong><span>Master's degrees</span></div></div>",
+      "css": ".ds-tiles { display: flex; gap: 0.5rem; font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; } .ds-tiles > div { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; padding: 0.85rem 0.5rem; border-radius: 1.15rem; background: #c7c3b1; text-align: center; } .ds-tiles strong { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.05em; line-height: 1; color: #fcff2a; -webkit-text-stroke: 1.2px #14140f; paint-order: stroke fill; } .ds-tiles span { font-size: 0.66rem; font-weight: 600; color: #3f3e33; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Hull Marking",
+    "overview": "A name painted on steel at cargo scale, with the person standing in front of it. The page behaves like industrial signage: one enormous word in hazard yellow, one warm stone field the colour of dry cargo, and a cut-out portrait that stands on the ground rather than floating above it. Everything else — statistics, traits, navigation, contact routes — is a physical plate set onto that ground.\n\nDensity is generous at the section level and tight inside a plate. Type is a single grotesque, Archivo, run from a 0.68rem uppercase label to a wordmark that is 40% of the viewport width. Tracking closes as size grows (-0.032em at title, -0.055em on the closing wordmark); the hero wordmark instead distributes its letters edge to edge with space-between, so the word always spans the full measure at any width.\n\nConfirmed rejections: navy-and-white corporate shipping stock, container-yard photography, the centred-avatar personal portfolio, and neutral grey. No neutral in this system is grey — every stone and every ink is pulled toward the ground's warm hue.",
+    "keyCharacteristics": [
+      "One ground colour (#d3cfbe) and one signal colour (#fcff2a); nothing else competes.",
+      "One plate material everywhere: raised warm stone with a light top edge and a diffuse warm shadow.",
+      "Acid never sets body text; where it carries display type on a light plate it is outlined in ink.",
+      "A single type family at every level; hierarchy comes from size, weight and tracking alone.",
+      "Soft-cornered plates (12–28px), pill buttons, and drawn 24px-grid icons — never a typographic or emoji glyph."
+    ],
+    "rules": [
+      {
+        "name": "The One Plate Rule",
+        "body": "There is one plate material on this page: raised warm stone with a light top edge and a diffuse warm shadow. The hero's floating plates are that same material at 80–82% opacity over a 10px blur — not a different register. No dark-glass overlay, no second surface family.",
+        "section": "colors"
+      },
+      {
+        "name": "The Acid-Never-Reads Rule",
+        "body": "Acid is a display and surface colour only. It never sets body copy, labels, or any text below display size on the stone ground, where it fails contrast. Where acid must carry display type, it is outlined.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Neutral Rule",
+        "body": "No grey. Every stone and every ink is tinted toward the ground's hue; a pure neutral anywhere in this system is a bug.",
+        "section": "colors"
+      },
+      {
+        "name": "The Outlined Acid Rule",
+        "body": "Wherever acid carries display type on a light plate, it is acid fill plus an ink -webkit-text-stroke with paint-order: stroke fill. The stroke carries the contrast; the fill carries the identity. Stroke weight scales with the type: journey years 1.4px, hero stat numerals 1.2px, mobile sheet stat numerals 1.2px, rail stat numerals 1px. This is the general mechanism that lets one light plate material carry the acid signal everywhere without failing legibility.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Archivo sets every word on the page. Hierarchy is built from size, weight and tracking only; a second face is never introduced for contrast.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tightening Rule",
+        "body": "Tracking closes as size opens: -0.011em at body, -0.032em at title, -0.045em at section heading, -0.052/-0.055em at display. The one exception is uppercase labels, which open to +0.055em.",
+        "section": "typography"
+      },
+      {
+        "name": "The Offset Shadow Rule",
+        "body": "Every shadow in this system has vertical offset and a warm or olive tint. A symmetric zero-offset halo, or a neutral-black shadow, does not belong here.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Flat Cut-Out Rule",
+        "body": "The portrait carries no cast shadow. A soft blur skirting hair and shoulders reads as a failed alpha matte; the cut-out sits flat on the ground.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do build every container from the one plate material: stone-raised (or stone-float in the hero), 1.15–1.75rem radius, light top edge, plate shadow.",
+      "Do outline acid display type on light plates with an ink -webkit-text-stroke and paint-order: stroke fill, scaling the stroke to the type size (1px at 1.45rem, 1.4px at 3.15rem).",
+      "Do distribute the wordmark with justify-content: space-between rather than reaching for letter-spacing, which has no effect between flex items.",
+      "Do keep every neutral warm-tinted toward the ground's hue.",
+      "Do give every shadow vertical offset and a warm or olive tint.",
+      "Do draw new icons on the 24px grid at 1.75 stroke with round caps and joins, and give each list item its own mark rather than repeating one glyph.",
+      "Do keep the five contact routes reachable in every viewport — rail on desktop, fixed bar below 1180px, full grid in the contact block."
+    ],
+    "donts": [
+      "Don't set acid as body text, labels, or any unoutlined text below display size on the stone ground.",
+      "Don't introduce a second surface family — no dark-glass overlay, no second plate register. Translucency plus blur over stone is the only variation the hero gets.",
+      "Don't extend pitch past the journey monogram badges; it is a badge colour, not a section background.",
+      "Don't put a cast shadow or drop-shadow under the portrait cut-out.",
+      "Don't introduce a second type family, an italic, or a serif for contrast.",
+      "Don't use an emoji, a unicode dingbat, or a font glyph where a drawn SVG mark belongs.",
+      "Don't use neutral grey, a pure-black shadow, or a trademark superscript on the wordmark."
+    ]
+  }
+}

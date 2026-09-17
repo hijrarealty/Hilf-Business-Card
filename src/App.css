@@ -1,0 +1,61 @@
+/* ==================================================================
+   SHELL — the rail owns a column of the page on desktop. That column
+   is reserved at all widths above the breakpoint, never toggled, so
+   nothing reflows when the rail slides in.
+   ================================================================== */
+:root {
+  --content-left: var(--gutter);
+}
+
+@media (min-width: 1181px) {
+  :root {
+    --content-left: calc(var(--rail-w) + var(--gutter) * 0.6);
+  }
+}
+
+.shell {
+  display: flow-root;
+}
+
+.section {
+  padding: var(--section-y) var(--gutter) var(--section-y) var(--content-left);
+  scroll-margin-top: 1rem;
+}
+
+.section:focus-visible,
+.ct:focus-visible,
+.hero:focus-visible {
+  outline: none;
+}
+
+/* The contact block carries the closing wordmark, so it clears the rail too. */
+.ct {
+  padding-left: var(--content-left);
+}
+
+/* Voices breaks its gutter to run the rail of cards to the screen edge —
+   re-derive the break from the real left padding, not the raw gutter. */
+.vo .vo__viewport {
+  margin-left: calc(var(--content-left) * -1);
+  margin-right: calc(var(--gutter) * -1);
+}
+
+.vo .vo__track {
+  padding-left: var(--content-left);
+  padding-right: var(--gutter);
+  scroll-padding-left: var(--content-left);
+}
+
+/* Alternating ground tint gives the long scroll a rhythm without
+   introducing a second surface colour. */
+.jr,
+.sv {
+  background: linear-gradient(180deg, transparent, rgba(199, 195, 177, 0.4) 18%, rgba(199, 195, 177, 0.4) 82%, transparent);
+}
+
+/* Room for the sticky mobile action bar. */
+@media (max-width: 1180px) {
+  .vo {
+    padding-bottom: calc(var(--section-y) + 3rem);
+  }
+}

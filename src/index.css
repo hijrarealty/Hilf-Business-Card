@@ -1,0 +1,369 @@
+@import '@fontsource-variable/archivo/index.css';
+
+/* ==================================================================
+   TOKENS
+   Warm stone ground, one acid-yellow signal, warm-tinted ink.
+   Every neutral is pulled toward the ground's hue — nothing is grey.
+   ================================================================== */
+:root {
+  /* — ground & surfaces — */
+  --stone: #d3cfbe;
+  --stone-raised: #dcd9ca;
+  --stone-raised-2: #e3e0d3;
+  --stone-sunk: #c7c3b1;
+  --stone-edge: rgba(255, 255, 255, 0.62);
+  --stone-line: rgba(28, 26, 16, 0.12);
+  --stone-line-soft: rgba(28, 26, 16, 0.07);
+
+  /* — ink (warm-tinted, never neutral grey) — */
+  --ink: #14140f;
+  --ink-2: #3f3e33;
+  --ink-3: #565542;
+  --ink-4: #86846f;
+
+  /* — signal — */
+  --acid: #fcff2a;
+  --acid-press: #e6e900;
+  --on-acid: #14140f;
+
+  /* — deep ink surfaces — */
+  --pitch: #16160f;
+
+  /* — type — */
+  --font: 'Archivo Variable', 'Archivo', system-ui, -apple-system, sans-serif;
+
+  --t-d1: clamp(2.6rem, 6.4vw, 5.2rem);
+  --t-d2: clamp(2rem, 4.6vw, 3.5rem);
+  --t-lead: clamp(1rem, 1.25vw, 1.18rem);
+  --t-body: clamp(0.95rem, 1.05vw, 1.05rem);
+  --t-sm: 0.875rem;
+  --t-xs: 0.75rem;
+
+  /* — space — */
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+
+  --gutter: clamp(1.15rem, 4vw, 3.5rem);
+  --section-y: clamp(4.5rem, 11vh, 9rem);
+
+  /* — form — */
+  --r-sm: 0.75rem;
+  --r-md: 1.15rem;
+  --r-lg: 1.75rem;
+  --r-pill: 999px;
+
+  /* — frosted glass —
+     Depth comes from the blur and a hairline light edge, not from a
+     drop shadow. Cards are translucent enough that the ground, the
+     wordmark and the portrait read through them. */
+  --glass-content: rgba(223, 222, 206, 0.8);
+  --glass-overlay: rgba(203, 197, 183, 0.55);
+  --glass-edge: rgba(255, 255, 255, 0.34);
+  --glass-edge-strong: rgba(255, 255, 255, 0.46);
+  --blur-content: blur(12px) saturate(1.08);
+  --blur-overlay: blur(20px) saturate(1.05);
+
+  /* Kept only for the acid button, which does sit above the surface. */
+  --shadow-plate: 0 1px 2px rgba(32, 30, 18, 0.04), 0 8px 20px -12px rgba(32, 30, 18, 0.12);
+  --shadow-lift: 0 2px 5px rgba(32, 30, 18, 0.06), 0 22px 44px -16px rgba(32, 30, 18, 0.2);
+  --shadow-acid: 0 2px 4px rgba(32, 30, 18, 0.14), 0 16px 34px -12px rgba(150, 152, 0, 0.5);
+
+  /* — motion: exponential ease-out — */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-1: 180ms;
+  --dur-2: 380ms;
+  --dur-3: 720ms;
+
+  --rail-w: 15.5rem;
+  --rail-gap: 1.1rem;
+}
+
+/* ==================================================================
+   RESET & BASE
+   ================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--stone);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  font-variant-numeric: tabular-nums;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* ==================================================================
+   BROWSER SURFACES — the parts we did not draw still carry the design
+   ================================================================== */
+::selection {
+  background: var(--acid);
+  color: var(--on-acid);
+}
+
+body {
+  caret-color: var(--ink);
+  scrollbar-color: var(--ink-4) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--stone-sunk);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ink-4);
+  border: 3px solid var(--stone-sunk);
+  border-radius: var(--r-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-2);
+}
+
+::placeholder {
+  color: var(--ink-3);
+  opacity: 1;
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* On acid surfaces the ink ring would disappear into the glow — invert it. */
+.on-acid:focus-visible {
+  outline-color: var(--ink);
+  outline-offset: 3px;
+}
+
+a:not([class]) {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--ink-4);
+  transition: text-decoration-color var(--dur-1) var(--ease);
+}
+
+a:not([class]):hover {
+  text-decoration-color: var(--ink);
+}
+
+/* ==================================================================
+   SHARED PRIMITIVES
+   ================================================================== */
+.skip-link {
+  position: fixed;
+  top: var(--s-4);
+  left: var(--s-4);
+  z-index: 200;
+  padding: 0.7rem 1.1rem;
+  background: var(--acid);
+  color: var(--on-acid);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-160%);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* Frosted stone plate — the one container in this system.
+   Translucent, blurred, and edged with a hairline of light. No shadow:
+   the blur and the edge carry the depth. */
+.plate {
+  position: relative;
+  background: var(--glass-content);
+  backdrop-filter: var(--blur-content);
+  -webkit-backdrop-filter: var(--blur-content);
+  border: 0.8px solid var(--glass-edge);
+  border-radius: var(--r-lg);
+}
+
+/* A brighter top edge, the way light falls on a real pane. */
+.plate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border-top: 0.8px solid var(--glass-edge-strong);
+  pointer-events: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.6rem;
+  border-radius: var(--r-pill);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    transform var(--dur-1) var(--ease),
+    box-shadow var(--dur-2) var(--ease),
+    background-color var(--dur-1) var(--ease);
+}
+
+.btn--acid {
+  background: var(--acid);
+  color: var(--on-acid);
+  box-shadow: var(--shadow-acid);
+}
+
+.btn--acid:hover {
+  background: var(--acid-press);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(32, 30, 18, 0.16), 0 22px 44px -12px rgba(150, 152, 0, 0.58);
+}
+
+.btn--stone {
+  background: var(--stone-raised-2);
+  color: var(--ink);
+  box-shadow: var(--shadow-plate);
+}
+
+.btn--stone:hover {
+  background: #eae7db;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Section heading block */
+.sec-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-5);
+}
+
+.sec-title {
+  font-size: var(--t-d1);
+}
+
+/* Authored line breaks in display headings. */
+.sec-title > span,
+.ct__title > span {
+  display: block;
+}
+
+.sec-body {
+  max-width: 34ch;
+  color: var(--ink-2);
+  font-size: var(--t-lead);
+  line-height: 1.6;
+}
+
+/* ---- line reveal ----
+   Each line gets a clipping box so it can rise out of its own edge.
+   Authored by splitIntoLines() in src/lib/motion.js. */
+.ln {
+  display: block;
+  overflow: hidden;
+}
+
+.ln-i {
+  display: block;
+  will-change: transform, opacity, filter;
+}
+
+/* Text that will be split must not be clipped by its own box mid-rise. */
+[data-reveal] {
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .ln-i {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}

@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+*.local
+.impeccable/config.local.json
+
+# Impeccable finish-review captures (regenerable, ~10MB)
+.impeccable/review/

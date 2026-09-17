@@ -1,0 +1,120 @@
+/* ==================================================================
+   CONTACT — the wordmark returns at scale, the five routes sit on it.
+   ================================================================== */
+.ct {
+  position: relative;
+  padding: clamp(3.5rem, 9vh, 7rem) var(--gutter) clamp(2rem, 5vh, 3rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ct__mark {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: var(--acid);
+  font-size: clamp(4rem, 23vw, 24rem);
+  font-weight: 700;
+  line-height: 0.76;
+  letter-spacing: -0.055em;
+  user-select: none;
+  margin-bottom: clamp(-1.5rem, -3vh, -0.5rem);
+}
+
+.ct__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  padding-top: clamp(1.5rem, 4vh, 3rem);
+}
+
+.ct__title {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--t-d2);
+  margin-bottom: var(--s-4);
+}
+
+.ct__body {
+  font-size: var(--t-lead);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 38ch;
+}
+
+.ct__where {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: var(--s-5);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--r-pill);
+  background: var(--stone-sunk);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.ct__routes {
+  display: flex;
+}
+
+/* ---- footer ---- */
+.ct__foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-4) var(--s-6);
+  margin-top: clamp(3rem, 8vh, 5.5rem);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--stone-line);
+}
+
+.ct__orgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+}
+
+.ct__orgs li {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: var(--ink-3);
+}
+
+.ct__legal {
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+
+@media (max-width: 900px) {
+  .ct__inner {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+}
+
+@media (max-width: 1180px) {
+  /* Clear the sticky mobile bar. */
+  .ct {
+    padding-bottom: 5.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .ct__mark {
+    font-size: clamp(3.4rem, 25vw, 8rem);
+  }
+
+  .ct__foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

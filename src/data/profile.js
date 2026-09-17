@@ -6,31 +6,31 @@
 /* ------------------------------------------------------------------ *
  *  CONTACT — the five buttons
  *
- *  ⚠️  ONLY `linkedin` IS CONFIRMED. Replace the four placeholders below
- *      with real destinations before publishing.
+ *  WhatsApp, LinkedIn and email are confirmed.
+ *
+ *  ⚠️  Instagram and Facebook are still placeholders — replace both
+ *      before publishing, or drop them from `socials` below.
  *
  *      whatsapp  — digits only, country code first, no +, spaces or dashes
- *                  e.g. UAE mobile 050 123 4567  →  '971501234567'
  *      instagram — the handle without the @
  *      facebook  — the profile slug from facebook.com/<slug>
- *      email     — the address to receive enquiries
  * ------------------------------------------------------------------ */
 const CONTACT_RAW = {
-  whatsapp: '971504020908', // PLACEHOLDER
+  whatsapp: '971504020908', // confirmed — +971 50 402 0908
   instagram: 'asifbinhossain', // PLACEHOLDER
   facebook: 'asifbinhossain', // PLACEHOLDER
   linkedin: 'asifbh', // confirmed
-  email: 'asif@hilfshipping.com', // PLACEHOLDER
+  email: 'asif@hilfshipping.com', // confirmed
 };
 
 /** Anything still matching these is a placeholder and is flagged in the console. */
-const PLACEHOLDERS = ['971500000000', 'asifbinhossain', 'asif@example.com'];
+const PLACEHOLDERS = ['asifbinhossain'];
 
 export const socials = [
   {
     id: 'whatsapp',
     label: 'WhatsApp',
-    handle: 'Message on WhatsApp',
+    handle: '+971 50 402 0908',
     href: `https://wa.me/${CONTACT_RAW.whatsapp}`,
     isPlaceholder: PLACEHOLDERS.includes(CONTACT_RAW.whatsapp),
   },
@@ -74,7 +74,7 @@ export const person = {
   role: 'Dry Bulk Chartering',
   location: 'Dubai, United Arab Emirates',
   signoff: ['The chartering desk.', "That's Asif."],
-  headline: ['Dry Bulk,', 'Chartered', 'Differently.'],
+  headline: ['Senior', 'Chartering', 'Manager'],
   intro:
     'Working alongside owners, traders and operators to fix the right tonnage at the right time — and keep the voyage clean long after the deal is done.',
   /** Each trait carries its own drawn mark — see Icon.jsx for the set. */
@@ -305,3 +305,4 @@ if (import.meta.env?.DEV) {
     console.warn('[profile] Voices section contains SYNTHETIC placeholder testimonials. Replace or remove before publishing.');
   }
 }
+

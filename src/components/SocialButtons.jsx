@@ -4,11 +4,11 @@ import './social.css';
 
 /**
  * The contact routes. One component, three renderings:
- *   compact — icon-only row for the desktop rail
+ *   chips   — the hero's labelled row on desktop
  *   bar     — the sticky mobile action bar
  *   full    — the contact section's primary buttons
  */
-export default function SocialButtons({ variant = 'compact', children }) {
+export default function SocialButtons({ variant = 'chips', children }) {
   return (
     <ul className={`socials socials--${variant}`}>
       {socials.map((s) => (
@@ -23,10 +23,11 @@ export default function SocialButtons({ variant = 'compact', children }) {
             }
           >
             <span className="social__glyph">
-              <Icon name={s.id} size={variant === 'full' ? 22 : 19} />
+              <Icon name={s.id} size={variant === 'full' ? 22 : variant === 'chips' ? 16 : 19} />
             </span>
 
             {variant === 'bar' && <span className="social__label">{s.short ?? s.label}</span>}
+            {variant === 'chips' && <span className="social__label">{s.short ?? s.label}</span>}
 
             {variant === 'full' && (
               <>

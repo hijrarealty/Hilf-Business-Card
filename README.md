@@ -1,7 +1,13 @@
-# Asif Bin Hossain — Portfolio
+# Asif bin Hossain — HILF Shipping digital business card
 
-Single-page personal portfolio for **Asif Bin Hossain**, Senior Chartering Manager at **HILF Shipping LLC**, Dubai.
-React 18 + Vite, plain CSS with custom properties, no UI framework, no backend.
+The page behind the QR code on Asif bin Hossain's HILF Shipping business card.
+React 18 + Vite, plain CSS with custom properties, no backend.
+
+When the QR code is scanned:
+
+1. **Blue screen** — the HILF navy, for a moment.
+2. **HILF logo motion** — on a light ground, the grey Arabic حلف writes in right to left, then the navy Latin "hilf" wipes in left to right over it.
+3. **The card** — Asif bin Hossain, Senior Chartering Manager, HILF Shipping, with Call and Save contact straight away.
 
 ---
 
@@ -19,71 +25,74 @@ npm run dev
 npm run build
 ```
 
-`npm run build` writes a static site to `dist/` — deploy that folder anywhere (Netlify, Vercel, GitHub Pages, S3, cPanel). There is no server component.
+`npm run build` writes a static site to `dist/`. Deploy that folder anywhere (Vercel, Netlify, S3, cPanel).
 
 ---
 
-## What it is for
+## Editing the card
 
-The page sits behind the QR code on Asif's HILF Shipping business card, so it is built for a phone first:
-
-- **Four contact routes** — WhatsApp, LinkedIn, email and hilfshipping.com — in a fixed bar at the bottom of the screen at every width below 1180px.
-- **Save** (in that bar and in the contact section) downloads a vCard, which opens the phone's own "add contact" sheet.
-- **HILF Shipping section** — the company's own description, its four pillars, cargoes, clients and head office, with buttons into hilfshipping.com (home, About, Our Business, Why Us, Contact).
-
-Every company fact in `profile.js` is taken from hilfshipping.com. If the company site changes, update the `company` export to match.
-
-The Ever Glory Ship Charter card in the timeline is labelled **"Then"** because its start year is not known. Put the real year in the `journey` entry when you have it.
-
----
-
-## Editing content
-
-**Every piece of copy and every link lives in [`src/data/profile.js`](src/data/profile.js).** No component holds content of its own, so you can retitle sections, rewrite the journey, or add a service without touching a component file.
+**Every piece of copy and every link lives in [`src/data/profile.js`](src/data/profile.js).**
 
 | Export | Controls |
 |---|---|
-| `CONTACT_RAW` / `socials` | the four contact buttons |
-| `company` | the HILF Shipping section, the hero lockup and every link to hilfshipping.com |
-| `person` | name, wordmark, headline, intro, and the five traits (each `{ label, icon }`) |
-| `stats` | the two figures in the hero and rail |
-| `nav` | section list — drives the hero row, the rail and the mobile sheet |
-| `affiliations` | the scrolling organisation names and the footer row |
-| `journey` | the timeline cards (add or remove freely; the curve re-measures itself) |
-| `expertise` | the capability statement and its inline chips |
-| `services` | the three service columns |
-| `contact` | closing section copy |
+| `person` | name, designation, the ASIF wordmark, and the given/family split used in the saved contact |
+| `CONTACT_RAW` | WhatsApp number, phone number, LinkedIn URL, email |
+| `company` | company name, website, and the short introduction |
+| `office` | the Dubai office address — footer, Maps link and saved contact all read from here |
+| `socials` | the WhatsApp / LinkedIn / Email / Website buttons, in display order |
+| `stats` | the two figures in the hero |
 
-Icon names used in the data must exist in [`src/components/Icon.jsx`](src/components/Icon.jsx). Available: `home compass layers bolt quote send chart anchor clock users shield arrow plus copy check left right pin menu close ring`, `globe building download mail`, plus the brand marks `whatsapp linkedin email` (`website` renders as the globe).
+The company introduction is HILF Shipping's own wording from hilfshipping.com. The office address is the Google Maps listing for **HILF Shipping LLC FZ** (Tamani Arts Building, Al Asayel St, Business Bay). `office.map` opens that exact listing by its place ID, and `office.directions` opens a route to it. Change `company.intro` or `office` to update them everywhere.
 
-### The portrait
-
-`src/assets/asif-portrait.webp` (900×1032) and `asif-portrait-sm.webp` (560px wide, served below a 560px viewport) were derived from the transparent-background cut-out you supplied — `ChatGPT Image Sep 17, 2026, 05_26_24 PM.png`, 1171×1343, 1.6 MB — resized and encoded to WebP with alpha preserved (1.6 MB → 93 KB + 39 KB). No retouching, recolouring or recomposition was applied.
-
-To swap it, replace both files. The replacement needs a **transparent background** — the layout stands the cut-out in front of the wordmark, and a rectangular photo will break the effect.
+To make a card for another employee, change `person`, `CONTACT_RAW` and `stats`. Everything else is shared.
 
 ---
 
-## How it is put together
+## The contact buttons
+
+| Button | Link | Where |
+|---|---|---|
+| Call | `tel:+971504020908` | hero, footer, mobile bar |
+| Save contact | downloads `Asif-bin-Hossain.vcf` | hero, footer |
+| WhatsApp | `https://wa.me/971504020908` | hero (desktop), footer, mobile bar |
+| LinkedIn | profile URL | hero (desktop), footer, mobile bar |
+| Email | `mailto:` | hero (desktop), footer, mobile bar |
+| Website | `https://hilfshipping.com/` | hero (desktop), company section, footer, mobile bar |
+| Directions to office | Google Maps route to HILF Shipping LLC FZ | company section, footer |
+| Open in Maps | the office's Google Maps listing | footer, under the address |
+
+The saved contact carries name, company, designation, phone, email, office address, website and LinkedIn. On a phone it opens the "add contact" screen.
+
+---
+
+## The logo intro
+
+[`src/components/IntroSplash.jsx`](src/components/IntroSplash.jsx) is a port of the supplied `HILF Logo Motion.html` (its `hilp-reveal.jsx`). It uses the same timeline (Arabic 1.5s, Latin 1.5s), the same cue offsets and easing curves, the same clip-path wipes, ink edges and 103.5% → 100% settle. It runs as a `requestAnimationFrame` loop instead of shipping the original's React + Babel runtime (~3.3 MB).
+
+The logo keeps its own colours — navy `#050544` and grey `#5f5f5f` (the layers in `src/assets/intro/` are the original artwork). The sequence opens on the HILF blue; the light ground then opens out of the centre (a wipe, not a colour fade, so no washed-out blue appears between the two) and the mark draws on it. `index.html` paints the blue before any script loads, so a refresh never flashes white.
+
+Timings are constants at the top of the file: `BLUE_HOLD` (blue before the light ground), `TO_LIGHT` (wipe lead before the mark starts), `LOGO_HOLD` (rest on the finished mark), `EXIT` (the lift into the card). With `prefers-reduced-motion`, the finished mark shows briefly with no motion.
+
+---
+
+## Structure
 
 ```
 src/
-  index.css              design tokens, reset, themed browser surfaces, shared primitives
-  App.css                shell layout + the column the sticky rail reserves
-  App.jsx                section order and scroll wiring
+  index.css              design tokens (light paper + .theme-dark bands), reset, buttons, glass plates
+  App.jsx                the sequence: IntroSplash → Hero, Company, Contact; MobileBar
   data/profile.js        all content and links
+  lib/motion.js          Lenis smooth scroll, GSAP reveals, hero entrance + scroll dissolve
   lib/vcard.js           builds the downloadable contact card
-  hooks/useScrollUtils.js  reveal-on-scroll, active section, past-hero
   components/
-    Hero / Company / Rail / MobileBar / Journey / Expertise / Services / Contact
-    SocialButtons        the contact routes, three renderings
+    IntroSplash          blue screen + logo motion
+    Hero                 wordmark, name, designation, company, Call / Save contact, links, stats
+    Company              short HILF Shipping introduction and website button
+    Contact              the footer band: details, phone, office address, all contact routes
+    MobileBar            the fixed contact bar below 1180px
+    SocialButtons        the contact routes, three renderings (chips / bar / full)
     Icon                 authored SVG icon set
-    *.css                one stylesheet per component
 ```
-
-Colour, type, spacing, radius, shadow and easing are all tokens on `:root` in `index.css`. Change the palette there and the whole page follows.
-
-`DESIGN.md` records the design system as built.
 
 ---
 
@@ -91,17 +100,6 @@ Colour, type, spacing, radius, shadow and easing are all tokens on `:root` in `i
 
 | Width | Layout |
 |---|---|
-| ≥ 1181px | Hero nav straddles the portrait; sticky left rail slides in past the hero |
-| 641 – 1180px | Rail is replaced by a persistent contact bar (four routes + Save) plus a slide-in section sheet |
-| ≤ 640px | Hero becomes a poster — headline still lands on the shirt, with the stat plates, trait list, signature and intro left-anchored beneath it; timeline runs single-column with the spine down the left |
-
-The contact buttons are reachable at every width — in the rail on desktop, in the fixed bottom bar below it, and full-size in the contact section on every device.
-
----
-
-## Accessibility notes
-
-- Two themes from one token set: a light paper ground (`#F6F6F3`, ink `#0C0D24`) for the reading sections, and near-black navy bands (`.theme-dark`, `#0B0C1F`) for the hero, Expertise and Contact. The accent is the HILF logo navy `#05005C`, with its grey `#606060` for secondary labels. Every token is redefined inside `.theme-dark`, so a component reads correctly in either band.
-- The portrait is a black-clothed cut-out on a dark band, so a soft light bloom sits behind it to keep the shoulders from vanishing.
-- Skip link, visible focus rings, keyboard-operable carousel and menu sheet, `Escape` closes the sheet, focus returns to the trigger.
-- `prefers-reduced-motion` disables the marquee, the scroll-drawn timeline and all transitions.
+| ≥ 1181px | Full-height hero: ASIF across the top with "bin Hossain" under its end; designation left, actions and stats right |
+| 641 – 1180px | Same card stacked; a fixed bar at the bottom carries WhatsApp, LinkedIn, Email, Website and Call |
+| ≤ 640px | Name, designation, Call and Save contact sit directly under the wordmark in the first screen |

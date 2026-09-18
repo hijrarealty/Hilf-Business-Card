@@ -1,9 +1,10 @@
 import { useLayoutEffect, useRef } from 'react';
 import Icon from './Icon';
-import { person, stats, nav } from '../data/profile';
+import { person, stats, nav, company } from '../data/profile';
 import { bindHero } from '../lib/motion';
 import portrait from '../assets/asif-portrait.webp';
 import portraitSm from '../assets/asif-portrait-sm.webp';
+import logoLight from '../assets/hilf-logo-light.webp';
 import './hero.css';
 
 /** The nav row that straddles the portrait on desktop. */
@@ -24,8 +25,8 @@ function HeroNav({ items, onJump }) {
  * room for two on the left and three on the right, and the rail and the
  * mobile sheet both carry the complete set.
  */
-const HERO_LEFT = ['hero', 'journey'];
-const HERO_RIGHT = ['expertise', 'services', 'contact'];
+const HERO_LEFT = ['hero', 'company'];
+const HERO_RIGHT = ['journey', 'services', 'contact'];
 
 export default function Hero({ onJump }) {
   const pick = (ids) => ids.map((id) => nav.find((n) => n.id === id)).filter(Boolean);
@@ -40,13 +41,16 @@ export default function Hero({ onJump }) {
   }, []);
 
   return (
-    <section id="hero" ref={rootRef} className="hero" aria-label="Introduction">
+    <section id="hero" ref={rootRef} className="hero theme-dark" aria-label="Introduction">
       {/* Wordmark. Letters spread edge-to-edge at every width. */}
       <div className="hero__mark" aria-hidden="true">
         {person.wordmark.split('').map((ch, i) => (
           <span key={i}>{ch}</span>
         ))}
       </div>
+      <p className="hero__surname" aria-hidden="true">
+        {person.surname}
+      </p>
 
       <picture className="hero__portrait">
         <source media="(max-width: 560px)" srcSet={portraitSm} />
@@ -97,14 +101,21 @@ export default function Hero({ onJump }) {
               </span>
             ))}
           </h1>
+          <p className="hero__company">
+            <img src={logoLight} width="319" height="240" alt="" />
+            <span>
+              {company.legalName} · Dubai
+            </span>
+          </p>
           <div className="hero__cta">
             <button className="btn btn--acid on-acid" onClick={() => onJump('contact')}>
               Get in Touch
               <Icon name="arrow" size={17} />
             </button>
-            <button className="btn btn--stone" onClick={() => onJump('journey')}>
-              My Journey
-            </button>
+            <a className="btn btn--stone" href={company.site} target="_blank" rel="noopener noreferrer">
+              {company.name}
+              <Icon name="arrow" size={17} />
+            </a>
           </div>
         </div>
 

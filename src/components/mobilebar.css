@@ -20,13 +20,13 @@
     display: block;
     padding: 0.3rem;
     border-radius: var(--r-md);
-    background: rgba(220, 217, 202, 0.88);
+    background: rgba(11, 12, 31, 0.92);
     backdrop-filter: blur(16px) saturate(1.3);
     -webkit-backdrop-filter: blur(16px) saturate(1.3);
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.5) inset,
-      0 2px 6px rgba(32, 30, 18, 0.1),
-      0 18px 40px -12px rgba(32, 30, 18, 0.34);
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+      0 2px 6px rgba(12, 13, 36, 0.12),
+      0 18px 40px -12px rgba(12, 13, 36, 0.4);
     padding-bottom: max(0.3rem, env(safe-area-inset-bottom));
   }
 
@@ -41,9 +41,12 @@
     width: 2.85rem;
     height: 2.85rem;
     border-radius: var(--r-pill);
-    background: var(--acid);
-    color: var(--on-acid);
-    box-shadow: var(--shadow-acid);
+    /* Floats over both the paper and the dark bands, so it carries its
+       own white plate and hairline rather than a themed fill. */
+    background: #ffffff;
+    color: var(--brand);
+    border: 1px solid rgba(12, 13, 36, 0.12);
+    box-shadow: var(--shadow-lift);
     transform: scale(0.4);
     opacity: 0;
     pointer-events: none;
@@ -71,7 +74,7 @@
     inset: 0;
     z-index: 88;
     display: block;
-    background: rgba(20, 19, 12, 0.45);
+    background: rgba(7, 8, 26, 0.55);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     opacity: 0;
@@ -96,7 +99,7 @@
     gap: var(--s-5);
     padding: 1.1rem 1.1rem max(1.1rem, env(safe-area-inset-bottom));
     background: var(--stone-raised);
-    box-shadow: -18px 0 48px -16px rgba(32, 30, 18, 0.42);
+    box-shadow: -18px 0 48px -16px rgba(12, 13, 36, 0.35);
     transform: translateX(100%);
     visibility: hidden;
     transition:
@@ -153,7 +156,7 @@
     width: 100%;
     padding: 0.85rem 1rem;
     border-radius: var(--r-md);
-    background: var(--stone-raised-2);
+    background: var(--stone-sunk);
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.055em;
@@ -190,8 +193,6 @@
     letter-spacing: -0.05em;
     line-height: 1;
     color: var(--acid);
-    -webkit-text-stroke: 1.2px var(--ink);
-    paint-order: stroke fill;
   }
 
   .mnav__stats span {

@@ -5,7 +5,7 @@ import MobileBar from './components/MobileBar';
 import Journey from './components/Journey';
 import Expertise from './components/Expertise';
 import Services from './components/Services';
-import Voices from './components/Voices';
+import Company from './components/Company';
 import Contact from './components/Contact';
 import { nav } from './data/profile';
 import { useActiveSection, usePastHero } from './hooks/useScrollUtils';
@@ -39,10 +39,10 @@ export default function App() {
 
       <main id="main" className="shell">
         <Hero onJump={jump} />
+        <Company />
         <Journey />
         <Expertise />
         <Services />
-        <Voices />
         <Contact />
       </main>
     </>

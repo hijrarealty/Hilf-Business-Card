@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Icon from './Icon';
 import SocialButtons from './SocialButtons';
-import { person, stats, nav, affiliations, email } from '../data/profile';
+import { person, stats, nav, affiliations, email, company } from '../data/profile';
+import logo from '../assets/hilf-logo.webp';
 import './rail.css';
 
 function Marquee() {
@@ -52,8 +53,15 @@ export default function Rail({ active, onJump, visible }) {
     <aside className="rail" data-visible={visible} aria-label="Site navigation and contact">
       <div className="rail__card plate">
         <span className="rail__mark">{person.wordmark}</span>
+        <a className="rail__co" href={company.site} target="_blank" rel="noopener noreferrer">
+          <img src={logo} width="319" height="240" alt="" />
+          <span>
+            <strong>{person.role}</strong>
+            <span>{company.legalName}</span>
+          </span>
+        </a>
         <p className="rail__blurb">{person.intro}</p>
-        {/* Own row: five icons never fit beside the wordmark at any zoom. */}
+        {/* Own row: the icons never fit beside the wordmark at any zoom. */}
         <SocialButtons variant="compact" />
       </div>
 

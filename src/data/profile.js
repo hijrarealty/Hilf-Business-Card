@@ -4,27 +4,15 @@
  */
 
 /* ------------------------------------------------------------------ *
- *  CONTACT — the five buttons
+ *  CONTACT — the four buttons
  *
- *  WhatsApp, LinkedIn and email are confirmed.
- *
- *  ⚠️  Instagram and Facebook are still placeholders — replace both
- *      before publishing, or drop them from `socials` below.
- *
- *      whatsapp  — digits only, country code first, no +, spaces or dashes
- *      instagram — the handle without the @
- *      facebook  — the profile slug from facebook.com/<slug>
+ *      whatsapp — digits only, country code first, no +, spaces or dashes
  * ------------------------------------------------------------------ */
 const CONTACT_RAW = {
-  whatsapp: '971504020908', // confirmed — +971 50 402 0908
-  instagram: 'asifbinhossain', // PLACEHOLDER
-  facebook: 'asifbinhossain', // PLACEHOLDER
-  linkedin: 'asifbh', // confirmed
-  email: 'asif@hilfshipping.com', // confirmed
+  whatsapp: '971504020908',
+  linkedin: 'asifbh',
+  email: 'asif@hilfshipping.com',
 };
-
-/** Anything still matching these is a placeholder and is flagged in the console. */
-const PLACEHOLDERS = ['asifbinhossain'];
 
 export const socials = [
   {
@@ -32,51 +20,99 @@ export const socials = [
     label: 'WhatsApp',
     handle: '+971 50 402 0908',
     href: `https://wa.me/${CONTACT_RAW.whatsapp}`,
-    isPlaceholder: PLACEHOLDERS.includes(CONTACT_RAW.whatsapp),
-  },
-  {
-    id: 'instagram',
-    label: 'Instagram',
-    handle: `@${CONTACT_RAW.instagram}`,
-    href: `https://instagram.com/${CONTACT_RAW.instagram}`,
-    isPlaceholder: PLACEHOLDERS.includes(CONTACT_RAW.instagram),
-  },
-  {
-    id: 'facebook',
-    label: 'Facebook',
-    handle: `/${CONTACT_RAW.facebook}`,
-    href: `https://facebook.com/${CONTACT_RAW.facebook}`,
-    isPlaceholder: PLACEHOLDERS.includes(CONTACT_RAW.facebook),
   },
   {
     id: 'linkedin',
     label: 'LinkedIn',
     handle: '/in/asifbh',
     href: `https://www.linkedin.com/in/${CONTACT_RAW.linkedin}/`,
-    isPlaceholder: false,
   },
   {
     id: 'email',
     label: 'Email',
     handle: CONTACT_RAW.email,
     href: `mailto:${CONTACT_RAW.email}`,
-    isPlaceholder: PLACEHOLDERS.includes(CONTACT_RAW.email),
+  },
+  {
+    id: 'website',
+    label: 'HILF Shipping',
+    short: 'Website',
+    handle: 'hilfshipping.com',
+    href: 'https://hilfshipping.com/',
   },
 ];
 
 export const email = CONTACT_RAW.email;
+export const phone = `+${CONTACT_RAW.whatsapp}`;
+export const phoneDisplay = '+971 50 402 0908';
+
+/* ------------------------------------------------------------------ *
+ *  COMPANY — every fact here is taken from hilfshipping.com
+ * ------------------------------------------------------------------ */
+const SITE = 'https://hilfshipping.com/';
+
+export const company = {
+  name: 'HILF Shipping',
+  legalName: 'HILF Shipping LLC',
+  tagline: 'Your Voyage, Our Expertise',
+  site: SITE,
+  siteLabel: 'hilfshipping.com',
+  kicker: 'Dry bulk ship operator · Dubai, UAE',
+  lead: 'Dry bulk chartering with ethical global execution.',
+  about: [
+    'HILF Shipping supports the worldwide movement of dry bulk commodities through voyage charter, time charter and commercial management services.',
+    'Headquartered in Dubai, the team brings decades of maritime expertise — combining commercial judgment, operational discipline and sustainable thinking to support clients across global shipping markets.',
+  ],
+  pillars: [
+    { name: 'Proven', body: 'Track record in shipping and reliable cargo execution.' },
+    { name: 'Expert', body: 'Sourcing and operational management with minimum claims.' },
+    { name: 'Steadfast', body: 'Professional, cooperative teams focused on execution quality.' },
+    { name: 'Clear', body: 'Transparent communication with real-time shipping updates.' },
+  ],
+  cargoes: [
+    'Limestone',
+    'Gypsum',
+    'Dolomite',
+    'Iron ore',
+    'Coal',
+    'Minerals',
+    'Grains',
+    'Fertilizers',
+    'Agri-products',
+    'Bauxite',
+    'Alumina',
+    'Cement',
+    'Aggregates',
+  ],
+  clients: ['Aditya Birla Global Trading', 'Tata Chemicals', 'ArcelorMittal', 'TotalEnergies', 'Saint-Gobain'],
+  office: {
+    lines: ['Office #2007, Level 20, Tamani Arts Building', 'Al Asayel Street, Business Bay', 'Dubai, United Arab Emirates'],
+    map: 'https://www.google.com/maps/search/?api=1&query=Tamani+Arts+Building+Business+Bay+Dubai',
+  },
+  desk: 'chartering@hilfshipping.com',
+  /** Deep links into the company site's own sections. */
+  links: [
+    { label: 'About HILF', href: `${SITE}#about` },
+    { label: 'Our Business', href: `${SITE}#business` },
+    { label: 'Why HILF', href: `${SITE}#why-us` },
+    { label: 'Contact', href: `${SITE}#contact` },
+  ],
+};
 
 /* ------------------------------------------------------------------ */
 
 export const person = {
   wordmark: 'ASIF',
+  /** Set under the wordmark's right-hand end, completing the full name. */
+  surname: 'Bin Hossain',
   name: 'Asif Bin Hossain',
-  role: 'Dry Bulk Chartering',
+  role: 'Senior Chartering Manager',
+  company: company.legalName,
   location: 'Dubai, United Arab Emirates',
-  signoff: ['The chartering desk.', "That's Asif."],
+  signoff: ['Chartering desk,', 'HILF Shipping LLC.'],
   headline: ['Senior', 'Chartering', 'Manager'],
   intro:
-    'Working alongside owners, traders and operators to fix the right tonnage at the right time — and keep the voyage clean long after the deal is done.',
+    'Fixing dry bulk tonnage at HILF Shipping in Dubai — the right vessel at the right time, and a voyage kept clean long after the deal is done.',
   /** Each trait carries its own drawn mark — see Icon.jsx for the set. */
   traits: [
     { label: 'Analytical', icon: 'chart' },
@@ -89,20 +125,21 @@ export const person = {
 
 export const stats = [
   { value: '9+', label: ['Years in', 'dry bulk'] },
-  { value: '2', label: ["Master's", 'degrees'] },
+  { value: '13', label: ['Dry bulk', 'cargoes'] },
 ];
 
 export const nav = [
   { id: 'hero', label: 'Home', icon: 'home' },
+  { id: 'company', label: 'HILF Shipping', icon: 'building' },
   { id: 'journey', label: 'About Me', icon: 'compass' },
   { id: 'expertise', label: 'Expertise', icon: 'layers' },
   { id: 'services', label: 'Services', icon: 'bolt' },
-  { id: 'voices', label: 'Voices', icon: 'quote' },
   { id: 'contact', label: 'Contact', icon: 'send' },
 ];
 
 /** Real, verifiable affiliations — not client claims. Runs as a marquee. */
 export const affiliations = [
+  'HILF Shipping LLC',
   'Ever Glory Ship Charter',
   'Wealth Creation Gen. Trading',
   'Triton Ships Ltd',
@@ -143,13 +180,20 @@ export const journey = [
     title: 'Running the desk',
     body: 'Chartering Manager at Wealth Creation General Trading. Owning the fixture end to end: market read, negotiation, recap, then operations.',
     org: 'Wealth Creation General Trading LLC',
-    meta: 'Dubai · 2022–',
+    meta: 'Dubai · from 2022',
+  },
+  {
+    year: 'Then',
+    title: 'Ever Glory Ship Charter',
+    body: 'Chartering dry bulk tonnage out of Dubai, with the operations background still the part that pays for itself.',
+    org: 'Ever Glory Ship Charter LLC',
+    meta: 'Dubai',
   },
   {
     year: 'Now',
-    title: 'Ever Glory Ship Charter',
-    body: 'Chartering dry bulk tonnage out of Dubai. Nine years in, the operations background is still the part that pays for itself.',
-    org: 'Ever Glory Ship Charter LLC',
+    title: 'Senior Chartering Manager',
+    body: 'Leading dry bulk fixtures at HILF Shipping in Business Bay — voyage charter, time charter and commercial management for producers, traders and industrial end-users worldwide.',
+    org: 'HILF Shipping LLC',
     meta: 'Dubai · Present',
   },
 ];
@@ -206,103 +250,52 @@ export const expertise = {
 };
 
 export const services = {
-  title: ['Solutions', 'That Deliver'],
-  body: 'Same attention either way. The only difference is how much of the voyage sits on my desk.',
+  title: ['What I Handle', 'at HILF'],
+  body: 'HILF Shipping’s three lines of business, run from my desk — cargo in, voyage out, accounts closed.',
   items: [
     {
       icon: 'anchor',
-      name: 'Dry Bulk Chartering',
-      lede: 'Voyage and time charter fixtures, Handysize through Kamsarmax.',
+      name: 'Voyage Charter',
+      lede: 'Structured voyage charters tailored to cargo profile, route economics and operational requirements.',
       points: [
         'Tonnage and cargo matching against live position lists',
         'Freight negotiation and recap',
         'Charter party drafting, riders and clause review',
-        'Laycan planning around your production schedule',
-        'Owner and operator introductions across the Gulf',
+        'Laycan planning around the production schedule',
+        'Laytime and demurrage priced into the fixture',
       ],
-      fit: 'For shippers and traders who need a vessel fixed and want the terms to hold.',
+      fit: 'For producers, traders, importers and exporters moving dry bulk cargo.',
     },
     {
-      icon: 'shield',
-      name: 'Post-Fixture & Operations',
-      lede: 'The part of the voyage where money quietly leaves the room.',
+      icon: 'clock',
+      name: 'Time Charter',
+      lede: 'Dependable tonnage with commercial clarity and controlled execution.',
       points: [
-        'Laytime statements and demurrage calculations',
-        'Claims preparation, negotiation and settlement',
-        'Port agency coordination and disbursement review',
-        'Stowage, draft survey and documentation follow-through',
-        'Final accounts reconciled against the charter party',
+        'Period and trip time charter fixtures',
+        'Delivery and redelivery planning',
+        'Hire, bunkers and off-hire terms that hold',
+        'Owner and operator relationships across the Gulf and Asia',
+        'Post-fixture follow-through to final accounts',
       ],
-      fit: 'For owners and charterers carrying voyages they do not have the desk to police.',
+      fit: 'For clients who need a vessel on hand, not just a single voyage.',
     },
     {
       icon: 'chart',
-      name: 'Commercial Advisory',
-      lede: 'Market read and freight strategy, engagement by engagement.',
+      name: 'Commercial Management',
+      lede: 'Aligning vessel employment, cargo timing and market opportunity with client objectives.',
       points: [
         'Basin-level rate and tonnage analysis',
         'Freight budgeting and route comparison',
         'Counterparty and route risk assessment',
-        'Contract of affreightment structuring input',
-        'Desk setup and process review for new chartering teams',
+        'Port agency coordination and disbursement review',
+        'Claims preparation, negotiation and settlement',
       ],
-      fit: 'For businesses moving into dry bulk, or rebuilding a chartering function.',
-    },
-  ],
-};
-
-/**
- * ⚠️  SYNTHETIC PLACEHOLDER CONTENT — these are NOT real testimonials.
- *     Replace every entry with a genuine quote (LinkedIn recommendations are
- *     a good source) or delete the Voices section from App.jsx before launch.
- */
-export const voices = {
-  title: ['From People', "I've Worked With"],
-  synthetic: true,
-  items: [
-    {
-      heading: 'Knows the cargo, not just the rate.',
-      body: 'Placeholder testimonial. Asif came to every negotiation already knowing how the cargo would actually load and what it would cost us if the laycan slipped.',
-      author: 'Replace with a real name',
-      role: 'Role · Company',
-    },
-    {
-      heading: 'Post-fixture is where he earns it.',
-      body: 'Placeholder testimonial. The demurrage exposure was flagged before we fixed, not after the vessel sailed. That is not the normal experience.',
-      author: 'Replace with a real name',
-      role: 'Role · Company',
-    },
-    {
-      heading: 'Straight answers, fast.',
-      body: 'Placeholder testimonial. Across time zones and at short notice, the answer came back the same day and it was the honest one.',
-      author: 'Replace with a real name',
-      role: 'Role · Company',
-    },
-    {
-      heading: 'A safe pair of hands on the desk.',
-      body: 'Placeholder testimonial. We handed over a voyage mid-stream and it was reconciled cleanly without a single escalation to us.',
-      author: 'Replace with a real name',
-      role: 'Role · Company',
+      fit: 'For steel mills, power companies and industrial end-users with recurring cargo.',
     },
   ],
 };
 
 export const contact = {
   title: ['Have a cargo', 'or a vessel?'],
-  body: 'Dry bulk moves on WhatsApp and email at odd hours. Pick whichever is easiest — all five reach me.',
+  body: 'Dry bulk moves on WhatsApp and email at odd hours. Call me directly, or save my details straight to your phone.',
 };
-
-/* Dev-time nudge so the placeholders do not quietly ship. */
-if (import.meta.env?.DEV) {
-  const pending = socials.filter((s) => s.isPlaceholder).map((s) => s.label);
-  if (pending.length) {
-    console.warn(
-      `[profile] Placeholder contact links still in place: ${pending.join(', ')}. ` +
-        'Update CONTACT_RAW in src/data/profile.js before publishing.'
-    );
-  }
-  if (voices.synthetic) {
-    console.warn('[profile] Voices section contains SYNTHETIC placeholder testimonials. Replace or remove before publishing.');
-  }
-}
-

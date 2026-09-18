@@ -109,6 +109,8 @@
   box-shadow: var(--shadow-lift);
   opacity: 0;
   visibility: hidden;
+  /* --dx is set by the Chip when the card opens, to keep it on screen. */
+  margin-left: var(--dx, 0px);
   transform: translate(-50%, -6px);
   transition:
     opacity var(--dur-2) var(--ease),
@@ -141,26 +143,6 @@
   color: var(--ink-2);
 }
 
-/* Keep the first and last cards inside the viewport. */
-.xp__chipwrap:first-of-type .xp__card {
-  left: 0;
-  transform: translate(0, -6px);
-}
-
-.xp__chipwrap:first-of-type .xp__card[data-open='true'] {
-  transform: translate(0, 0);
-}
-
-.xp__chipwrap:last-of-type .xp__card {
-  left: auto;
-  right: 0;
-  transform: translate(0, -6px);
-}
-
-.xp__chipwrap:last-of-type .xp__card[data-open='true'] {
-  transform: translate(0, 0);
-}
-
 @media (max-width: 640px) {
   .xp__statement {
     max-width: 16ch;
@@ -171,4 +153,29 @@
     width: min(16rem, 74vw);
     padding: 0.85rem 0.95rem;
   }
+}
+
+/* The detail card is solid, not glass: over the statement the words behind
+   bled through it, and where it overhangs the paper section below, light
+   text on a see-through card vanished. A white card reads in both places. */
+.xp {
+  position: relative;
+  z-index: 2;
+}
+
+.xp__card.plate {
+  background: #ffffff;
+  color: #0c0d24;
+  border: 1px solid rgba(12, 13, 36, 0.1);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 24px 48px -16px rgba(0, 0, 0, 0.55);
+}
+
+.xp__card.plate::before {
+  display: none;
+}
+
+.xp__card.plate > span {
+  color: #3c3e52;
 }

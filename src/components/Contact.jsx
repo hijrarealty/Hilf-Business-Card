@@ -1,6 +1,7 @@
 import Icon from './Icon';
 import SocialButtons from './SocialButtons';
-import { contact, person, affiliations } from '../data/profile';
+import { contact, person, affiliations, company, phone, phoneDisplay } from '../data/profile';
+import { saveContact } from '../lib/vcard';
 import { useReveal, useStaggerReveal } from '../lib/motion';
 import './contact.css';
 
@@ -11,7 +12,7 @@ export default function Contact() {
   const year = new Date().getFullYear();
 
   return (
-    <section id="contact" className="ct" aria-labelledby="ct-title">
+    <section id="contact" className="ct theme-dark" aria-labelledby="ct-title">
       <div className="ct__mark" aria-hidden="true">
         {person.wordmark.split('').map((ch, i) => (
           <span key={i}>{ch}</span>
@@ -28,9 +29,23 @@ export default function Contact() {
           <p ref={bodyRef} className="ct__body" data-reveal>
             {contact.body}
           </p>
+          <div className="ct__actions">
+            <a className="btn btn--acid on-acid" href={`tel:${phone}`}>
+              <Icon name="phone" size={17} />
+              Call {phoneDisplay}
+            </a>
+            <button className="btn btn--stone" onClick={saveContact}>
+              <Icon name="download" size={17} />
+              Save contact
+            </button>
+          </div>
           <p className="ct__where">
             <Icon name="pin" size={16} />
             {person.location}
+          </p>
+          <p className="ct__desk">
+            For the wider team, write to the HILF chartering desk at{' '}
+            <a href={`mailto:${company.desk}`}>{company.desk}</a>.
           </p>
         </div>
 
@@ -46,7 +61,10 @@ export default function Contact() {
           ))}
         </ul>
         <p className="ct__legal">
-          © {year} {person.name} · {person.role}
+          © {year} {person.name} · {person.role},{' '}
+          <a href={company.site} target="_blank" rel="noopener noreferrer">
+            {company.legalName}
+          </a>
         </p>
       </footer>
     </section>

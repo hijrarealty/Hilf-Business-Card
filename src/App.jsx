@@ -1,50 +1,37 @@
 import { useCallback, useState } from 'react';
+import IntroSplash from './components/IntroSplash';
 import Hero from './components/Hero';
-import Rail from './components/Rail';
-import MobileBar from './components/MobileBar';
-import Journey from './components/Journey';
-import Expertise from './components/Expertise';
-import Services from './components/Services';
 import Company from './components/Company';
 import Contact from './components/Contact';
-import { nav } from './data/profile';
-import { useActiveSection, usePastHero } from './hooks/useScrollUtils';
-import { useSmoothScroll, scrollToSection } from './lib/motion';
+import MobileBar from './components/MobileBar';
+import { useSmoothScroll } from './lib/motion';
 import './App.css';
 
-const SECTION_IDS = nav.map((n) => n.id);
-
+/**
+ * The digital business card behind the QR code.
+ * Blue screen → HILF logo motion → the card (hero, company, contact).
+ */
 export default function App() {
-  useSmoothScroll();
-  const active = useActiveSection(SECTION_IDS);
-  const pastHero = usePastHero();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const jump = useCallback((id) => scrollToSection(id), []);
+  const [revealed, setRevealed] = useState(false);
+  const reveal = useCallback(() => setRevealed(true), []);
+  useSmoothScroll(!revealed);
 
   return (
     <>
-      <a className="skip-link" href="#main">
-        Skip to content
+      <IntroSplash onReveal={reveal} />
+
+      <a className="skip-link" href="#contact">
+        Skip to contact details
       </a>
 
-      <Rail active={active} onJump={jump} visible={pastHero} />
-      <MobileBar
-        active={active}
-        onJump={jump}
-        visible={pastHero}
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-      />
-
-      <main id="main" className="shell">
-        <Hero onJump={jump} />
+      {/* Inert until the intro hands over, so nothing behind it takes focus. */}
+      <main id="main" className="shell" inert={revealed ? undefined : ''}>
+        <Hero play={revealed} />
         <Company />
-        <Journey />
-        <Expertise />
-        <Services />
         <Contact />
       </main>
+
+      <MobileBar />
     </>
   );
 }

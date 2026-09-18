@@ -50,21 +50,29 @@
   width: 100%;
 }
 
-/* ---- compact: the desktop rail ---- */
-.socials--compact {
-  gap: 0.4rem;
+/* ---- chips: the hero's row on desktop ---- */
+.socials--chips {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
 }
 
-.socials--compact .social {
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 0.6rem;
-  background: var(--stone-sunk);
-  justify-content: center;
+.socials--chips .social {
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem 0.5rem 0.6rem;
+  border-radius: var(--r-pill);
+  background: var(--glass-overlay);
+  backdrop-filter: var(--blur-overlay);
+  -webkit-backdrop-filter: var(--blur-overlay);
+  border: 0.8px solid var(--glass-edge);
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
-.socials--compact .social:hover {
+.socials--chips .social:hover,
+.socials--chips .social:focus-visible {
   background: var(--brand);
+  border-color: var(--brand);
   color: var(--brand-ink);
   transform: translateY(-2px);
 }

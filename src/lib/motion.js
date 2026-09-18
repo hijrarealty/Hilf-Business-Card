@@ -27,7 +27,7 @@ export const prefersReducedMotion = () =>
    so scrubbed animations stay locked to the eased scroll rather than
    to the raw wheel events.
    ================================================================== */
-export function useSmoothScroll() {
+export function useSmoothScroll(paused = false) {
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
@@ -54,6 +54,14 @@ export function useSmoothScroll() {
       delete window.__lenis;
     };
   }, []);
+
+  // Held still while something else owns the screen (the opening intro).
+  useEffect(() => {
+    const lenis = window.__lenis;
+    if (!lenis) return;
+    if (paused) lenis.stop();
+    else lenis.start();
+  }, [paused]);
 }
 
 /* ==================================================================
@@ -252,28 +260,24 @@ export function playHeroIntro(root) {
   const q = gsap.utils.selector(root);
   const tl = gsap.timeline({ defaults: { ease: MOTION.ease } });
 
-  tl.from(q('.hero__mark span, .hero__surname'), {
+  tl.from(q('.hero__mark span'), {
     yPercent: 60,
     opacity: 0,
     filter: 'blur(26px)',
     duration: 1.25,
     stagger: 0.075,
   })
-    .from(
-      q('.hero__portrait'),
-      { scale: 1.06, opacity: 0, filter: 'blur(22px)', duration: 1.45 },
-      0.15
-    )
+    .from(q('.hero__company'), { y: 16, opacity: 0, filter: 'blur(10px)', duration: 0.85 }, 0.35)
     .from(
       q('.hero__headline .ln-i'),
       { yPercent: 108, opacity: 0, filter: 'blur(12px)', duration: 1, stagger: 0.08 },
-      0.5
+      0.45
     )
-    .from(q('.hero__company, .hero__cta .btn'), { y: 18, opacity: 0, filter: 'blur(8px)', duration: 0.8, stagger: 0.08 }, 0.8)
+    .from(q('.hero__role'), { y: 16, opacity: 0, filter: 'blur(10px)', duration: 0.85 }, 0.65)
     .from(
-      q('.hero__stat, .hero__traits, .hero__signoff, .hero__intro, .hero__navlink'),
-      { y: 16, opacity: 0, filter: 'blur(10px)', duration: 0.85, stagger: 0.045 },
-      0.65
+      q('.hero__cta .btn, .hero__links li, .hero__stat'),
+      { y: 18, opacity: 0, filter: 'blur(8px)', duration: 0.8, stagger: 0.05 },
+      0.8
     );
 
   return tl;
@@ -290,14 +294,9 @@ function attachHeroScrub(root) {
   const ctx = gsap.context(() => {
     const cast = [
       { sel: '.hero__mark', startPct: 0, endPct: 44, y: -90 },
-      { sel: '.hero__surname', startPct: 0, endPct: 40, y: -70 },
-      { sel: '.hero__navlink', startPct: 1, endPct: 30, y: -40 },
-      { sel: '.hero__stat', startPct: 3, endPct: 34, y: -55 },
-      { sel: '.hero__traits', startPct: 5, endPct: 35, y: -55 },
-      { sel: '.hero__signoff', startPct: 2, endPct: 32, y: -35 },
-      { sel: '.hero__intro', startPct: 4, endPct: 33, y: -35 },
-      { sel: '.hero__core', startPct: 7, endPct: 40, y: -70 },
-      { sel: '.hero__portrait', startPct: 6, endPct: 46, y: -40 },
+      { sel: '.hero__headline', startPct: 3, endPct: 42, y: -75 },
+      { sel: '.hero__id', startPct: 6, endPct: 40, y: -60 },
+      { sel: '.hero__side', startPct: 8, endPct: 42, y: -50 },
     ];
 
     for (const { sel, startPct, endPct, y } of cast) {
@@ -348,8 +347,8 @@ export function bindHero(root) {
   let handedOver = false;
 
   const INTRO_TARGETS =
-    '.hero__mark span, .hero__surname, .hero__portrait, .hero__headline .ln-i, .hero__company, .hero__cta .btn, ' +
-    '.hero__stat, .hero__traits, .hero__signoff, .hero__intro, .hero__navlink';
+    '.hero__mark span, .hero__company, .hero__headline .ln-i, .hero__role, ' +
+    '.hero__cta .btn, .hero__links li, .hero__stat';
 
   const handOver = () => {
     if (handedOver) return;
@@ -379,22 +378,6 @@ export function bindHero(root) {
     tl?.kill();
     detachScrub();
   };
-}
-
-/** Anchor navigation that respects Lenis when it is running. */
-export function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  const reduce = prefersReducedMotion();
-  if (window.__lenis && !reduce) {
-    window.__lenis.scrollTo(el, { offset: 0, duration: 1.2 });
-  } else {
-    el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-  }
-
-  el.setAttribute('tabindex', '-1');
-  el.focus({ preventScroll: true });
 }
 
 export { gsap, ScrollTrigger };

@@ -1,24 +1,12 @@
 /* ==================================================================
-   SHELL — the rail owns a column of the page on desktop. That column
-   is reserved at all widths above the breakpoint, never toggled, so
-   nothing reflows when the rail slides in.
+   SHELL
    ================================================================== */
-:root {
-  --content-left: var(--gutter);
-}
-
-@media (min-width: 1181px) {
-  :root {
-    --content-left: calc(var(--rail-w) + var(--gutter) * 0.6);
-  }
-}
-
 .shell {
   display: flow-root;
 }
 
 .section {
-  padding: var(--section-y) var(--gutter) var(--section-y) var(--content-left);
+  padding: var(--section-y) var(--gutter);
   scroll-margin-top: 1rem;
 }
 
@@ -26,16 +14,4 @@
 .ct:focus-visible,
 .hero:focus-visible {
   outline: none;
-}
-
-/* The contact block carries the closing wordmark, so it clears the rail too. */
-.ct {
-  padding-left: var(--content-left);
-}
-
-/* The paper sections alternate between the ground and pure white, so
-   the long light run between the dark bands still has a rhythm. */
-.jr {
-  background: var(--stone-raised);
-  border-block: 1px solid var(--stone-line-soft);
 }

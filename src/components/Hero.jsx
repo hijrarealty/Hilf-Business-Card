@@ -1,131 +1,85 @@
 import { useLayoutEffect, useRef } from 'react';
 import Icon from './Icon';
-import { person, stats, nav, company } from '../data/profile';
+import SocialButtons from './SocialButtons';
+import { person, stats, company, phone } from '../data/profile';
 import { bindHero } from '../lib/motion';
-import portrait from '../assets/asif-portrait.webp';
-import portraitSm from '../assets/asif-portrait-sm.webp';
+import { saveContact } from '../lib/vcard';
 import logoLight from '../assets/hilf-logo-light.webp';
 import './hero.css';
 
-/** The nav row that straddles the portrait on desktop. */
-function HeroNav({ items, onJump }) {
-  return (
-    <>
-      {items.map((item) => (
-        <button key={item.id} className="hero__navlink" onClick={() => onJump(item.id)}>
-          {item.label}
-        </button>
-      ))}
-    </>
-  );
-}
-
 /**
- * The hero row carries five of the six sections — the straddling layout has
- * room for two on the left and three on the right, and the rail and the
- * mobile sheet both carry the complete set.
+ * The card itself. The wordmark carries the page's scale; the name,
+ * designation and company sit under it, with the two actions a scanned
+ * card most needs — call and save — right beside them.
  */
-const HERO_LEFT = ['hero', 'company'];
-const HERO_RIGHT = ['journey', 'services', 'contact'];
-
-export default function Hero({ onJump }) {
-  const pick = (ids) => ids.map((id) => nav.find((n) => n.id === id)).filter(Boolean);
-  const left = pick(HERO_LEFT);
-  const right = pick(HERO_RIGHT);
+export default function Hero({ play }) {
   const rootRef = useRef(null);
 
+  // The entrance plays when the logo intro hands over, not on mount.
   useLayoutEffect(() => {
     const root = rootRef.current;
-    if (!root) return;
+    if (!root || !play) return;
     return bindHero(root);
-  }, []);
+  }, [play]);
 
   return (
-    <section id="hero" ref={rootRef} className="hero theme-dark" aria-label="Introduction">
-      {/* Wordmark. Letters spread edge-to-edge at every width. */}
+    <section id="hero" ref={rootRef} className="hero theme-dark" aria-labelledby="hero-name">
       <div className="hero__mark" aria-hidden="true">
         {person.wordmark.split('').map((ch, i) => (
           <span key={i}>{ch}</span>
         ))}
       </div>
-      <p className="hero__surname" aria-hidden="true">
-        {person.surname}
+
+      {/* The wordmark reads ASIF; the family name completes it underneath,
+          right-aligned under its end. The full name is the real heading. */}
+      <h1 id="hero-name" className="sr-only">
+        {person.name}
+      </h1>
+      <p className="hero__headline" aria-hidden="true">
+        <span className="ln">
+          <span className="ln-i">{person.familyName}</span>
+        </span>
       </p>
 
-      <picture className="hero__portrait">
-        <source media="(max-width: 560px)" srcSet={portraitSm} />
-        <img
-          src={portrait}
-          width="900"
-          height="1032"
-          alt={`${person.name}, ${person.role} professional based in ${person.location}`}
-          decoding="sync"
-        />
-      </picture>
-
       <div className="hero__stage">
-        <nav className="hero__nav hero__nav--left" aria-label="Primary">
-          <HeroNav items={left} onJump={onJump} />
-        </nav>
-        <nav className="hero__nav hero__nav--right" aria-label="Primary continued">
-          <HeroNav items={right} onJump={onJump} />
-        </nav>
-
-        <div className="hero__stats">
-          {stats.map((s, i) => (
-            <div key={s.value} className={`hero__stat hero__stat--${i}`}>
-              <strong>{s.value}</strong>
-              <span>
-                {s.label.map((l) => (
-                  <span key={l}>{l}</span>
-                ))}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <ul className="hero__traits">
-          {person.traits.map((t) => (
-            <li key={t.label}>
-              <Icon name={t.icon} size={16} />
-              {t.label}
-            </li>
-          ))}
-        </ul>
-
-        <div className="hero__core">
-          <h1 className="hero__headline">
-            {person.headline.map((line) => (
-              <span className="ln" key={line}>
-                <span className="ln-i">{line}</span>
-              </span>
-            ))}
-          </h1>
+        <div className="hero__id">
           <p className="hero__company">
             <img src={logoLight} width="319" height="240" alt="" />
-            <span>
-              {company.legalName} · Dubai
-            </span>
+            <span>{company.name}</span>
           </p>
-          <div className="hero__cta">
-            <button className="btn btn--acid on-acid" onClick={() => onJump('contact')}>
-              Get in Touch
-              <Icon name="arrow" size={17} />
-            </button>
-            <a className="btn btn--stone" href={company.site} target="_blank" rel="noopener noreferrer">
-              {company.name}
-              <Icon name="arrow" size={17} />
-            </a>
-          </div>
+          <p className="hero__role">{person.role}</p>
         </div>
 
-        <p className="hero__signoff">
-          {person.signoff.map((l) => (
-            <span key={l}>{l}</span>
-          ))}
-        </p>
+        <div className="hero__side">
+          <div className="hero__cta">
+            <a className="btn btn--acid on-acid" href={`tel:${phone}`}>
+              <Icon name="phone" size={17} />
+              Call
+            </a>
+            <button className="btn btn--stone" onClick={saveContact}>
+              <Icon name="download" size={17} />
+              Save contact
+            </button>
+          </div>
 
-        <p className="hero__intro">{person.intro}</p>
+          {/* The mobile bar carries these below 1180px; here they are for desktop. */}
+          <div className="hero__links">
+            <SocialButtons variant="chips" />
+          </div>
+
+          <div className="hero__stats">
+            {stats.map((s) => (
+              <div key={s.value} className="hero__stat">
+                <strong>{s.value}</strong>
+                <span>
+                  {s.label.map((l) => (
+                    <span key={l}>{l}</span>
+                  ))}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

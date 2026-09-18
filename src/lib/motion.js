@@ -252,7 +252,7 @@ export function playHeroIntro(root) {
   const q = gsap.utils.selector(root);
   const tl = gsap.timeline({ defaults: { ease: MOTION.ease } });
 
-  tl.from(q('.hero__mark span'), {
+  tl.from(q('.hero__mark span, .hero__surname'), {
     yPercent: 60,
     opacity: 0,
     filter: 'blur(26px)',
@@ -269,7 +269,7 @@ export function playHeroIntro(root) {
       { yPercent: 108, opacity: 0, filter: 'blur(12px)', duration: 1, stagger: 0.08 },
       0.5
     )
-    .from(q('.hero__cta .btn'), { y: 18, opacity: 0, filter: 'blur(8px)', duration: 0.8, stagger: 0.08 }, 0.8)
+    .from(q('.hero__company, .hero__cta .btn'), { y: 18, opacity: 0, filter: 'blur(8px)', duration: 0.8, stagger: 0.08 }, 0.8)
     .from(
       q('.hero__stat, .hero__traits, .hero__signoff, .hero__intro, .hero__navlink'),
       { y: 16, opacity: 0, filter: 'blur(10px)', duration: 0.85, stagger: 0.045 },
@@ -290,6 +290,7 @@ function attachHeroScrub(root) {
   const ctx = gsap.context(() => {
     const cast = [
       { sel: '.hero__mark', startPct: 0, endPct: 44, y: -90 },
+      { sel: '.hero__surname', startPct: 0, endPct: 40, y: -70 },
       { sel: '.hero__navlink', startPct: 1, endPct: 30, y: -40 },
       { sel: '.hero__stat', startPct: 3, endPct: 34, y: -55 },
       { sel: '.hero__traits', startPct: 5, endPct: 35, y: -55 },
@@ -347,7 +348,7 @@ export function bindHero(root) {
   let handedOver = false;
 
   const INTRO_TARGETS =
-    '.hero__mark span, .hero__portrait, .hero__headline .ln-i, .hero__cta .btn, ' +
+    '.hero__mark span, .hero__surname, .hero__portrait, .hero__headline .ln-i, .hero__company, .hero__cta .btn, ' +
     '.hero__stat, .hero__traits, .hero__signoff, .hero__intro, .hero__navlink';
 
   const handOver = () => {

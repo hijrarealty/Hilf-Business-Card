@@ -2,32 +2,38 @@
 
 /* ==================================================================
    TOKENS
-   Warm stone ground, one acid-yellow signal, warm-tinted ink.
-   Every neutral is pulled toward the ground's hue — nothing is grey.
+   Taken from the HILF Shipping mark: its navy (#05005C) and its grey.
+   A light paper ground carries the reading sections; near-black navy
+   bands (.theme-dark) carry the hero, the company and the close.
+   Every token below is redefined inside .theme-dark, so a component
+   never needs to know which band it sits in.
    ================================================================== */
 :root {
+  /* — brand — */
+  --brand: #05005c;
+  --brand-grey: #606060;
+
   /* — ground & surfaces — */
-  --stone: #d3cfbe;
-  --stone-raised: #dcd9ca;
-  --stone-raised-2: #e3e0d3;
-  --stone-sunk: #c7c3b1;
-  --stone-edge: rgba(255, 255, 255, 0.62);
-  --stone-line: rgba(28, 26, 16, 0.12);
-  --stone-line-soft: rgba(28, 26, 16, 0.07);
+  --stone: #f6f6f3;
+  --stone-raised: #ffffff;
+  --stone-raised-2: #ffffff;
+  --stone-sunk: #ecece7;
+  --stone-line: rgba(12, 13, 36, 0.12);
+  --stone-line-soft: rgba(12, 13, 36, 0.07);
 
-  /* — ink (warm-tinted, never neutral grey) — */
-  --ink: #14140f;
-  --ink-2: #3f3e33;
-  --ink-3: #565542;
-  --ink-4: #86846f;
+  /* — foreground — */
+  --ink: #0c0d24;
+  --ink-2: #3c3e52;
+  --ink-3: #5c5e70;
+  --ink-4: rgba(12, 13, 36, 0.3);
 
-  /* — signal — */
-  --acid: #fcff2a;
-  --acid-press: #e6e900;
-  --on-acid: #14140f;
+  /* — signal: the brand navy on paper — */
+  --acid: var(--brand);
+  --acid-press: #16109a;
+  --on-acid: #ffffff;
 
-  /* — deep ink surfaces — */
-  --pitch: #16160f;
+  /* — inverted chip (journey monograms) — */
+  --pitch: var(--brand);
 
   /* — type — */
   --font: 'Archivo Variable', 'Archivo', system-ui, -apple-system, sans-serif;
@@ -57,20 +63,18 @@
   --r-pill: 999px;
 
   /* — frosted glass —
-     Depth comes from the blur and a hairline light edge, not from a
-     drop shadow. Cards are translucent enough that the ground, the
-     wordmark and the portrait read through them. */
-  --glass-content: rgba(223, 222, 206, 0.8);
-  --glass-overlay: rgba(203, 197, 183, 0.55);
-  --glass-edge: rgba(255, 255, 255, 0.34);
-  --glass-edge-strong: rgba(255, 255, 255, 0.46);
+     On paper the glass is near-white with a dark hairline; in the dark
+     bands it becomes a thin light wash. Depth comes from the edge. */
+  --glass-content: rgba(255, 255, 255, 0.8);
+  --glass-overlay: rgba(255, 255, 255, 0.7);
+  --glass-edge: rgba(12, 13, 36, 0.09);
+  --glass-edge-strong: rgba(255, 255, 255, 0.95);
   --blur-content: blur(12px) saturate(1.08);
   --blur-overlay: blur(20px) saturate(1.05);
 
-  /* Kept only for the acid button, which does sit above the surface. */
-  --shadow-plate: 0 1px 2px rgba(32, 30, 18, 0.04), 0 8px 20px -12px rgba(32, 30, 18, 0.12);
-  --shadow-lift: 0 2px 5px rgba(32, 30, 18, 0.06), 0 22px 44px -16px rgba(32, 30, 18, 0.2);
-  --shadow-acid: 0 2px 4px rgba(32, 30, 18, 0.14), 0 16px 34px -12px rgba(150, 152, 0, 0.5);
+  --shadow-plate: 0 1px 2px rgba(12, 13, 36, 0.05), 0 8px 24px -14px rgba(12, 13, 36, 0.18);
+  --shadow-lift: 0 2px 6px rgba(12, 13, 36, 0.08), 0 24px 48px -20px rgba(12, 13, 36, 0.3);
+  --shadow-acid: 0 2px 6px rgba(5, 0, 92, 0.18), 0 14px 30px -14px rgba(5, 0, 92, 0.55);
 
   /* — motion: exponential ease-out — */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -80,6 +84,39 @@
 
   --rail-w: 15.5rem;
   --rail-gap: 1.1rem;
+}
+
+/* The dark bands. Near-black with the brand navy mixed in — dark
+   enough to read as neutral, never as a saturated blue field. */
+.theme-dark {
+  --stone: #0b0c1f;
+  --stone-raised: #15172d;
+  --stone-raised-2: #1e2140;
+  --stone-sunk: #07081a;
+  --stone-line: rgba(255, 255, 255, 0.14);
+  --stone-line-soft: rgba(255, 255, 255, 0.08);
+
+  --ink: #f5f5f2;
+  --ink-2: rgba(245, 245, 242, 0.78);
+  --ink-3: rgba(245, 245, 242, 0.62);
+  --ink-4: rgba(245, 245, 242, 0.32);
+
+  --acid: #f5f5f2;
+  --acid-press: #ffffff;
+  --on-acid: #0b0c1f;
+  --pitch: #f5f5f2;
+
+  --glass-content: rgba(255, 255, 255, 0.07);
+  --glass-overlay: rgba(255, 255, 255, 0.06);
+  --glass-edge: rgba(255, 255, 255, 0.14);
+  --glass-edge-strong: rgba(255, 255, 255, 0.26);
+
+  --shadow-plate: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 20px -12px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 2px 5px rgba(0, 0, 0, 0.32), 0 22px 44px -16px rgba(0, 0, 0, 0.6);
+  --shadow-acid: 0 2px 6px rgba(0, 0, 0, 0.35), 0 16px 34px -14px rgba(255, 255, 255, 0.22);
+
+  background: var(--stone);
+  color: var(--ink);
 }
 
 /* ==================================================================
@@ -192,14 +229,14 @@ body {
 }
 
 :focus-visible {
-  outline: 2.5px solid var(--ink);
+  outline: 2.5px solid var(--acid);
   outline-offset: 3px;
   border-radius: var(--r-sm);
 }
 
 /* On acid surfaces the ink ring would disappear into the glow — invert it. */
 .on-acid:focus-visible {
-  outline-color: var(--ink);
+  outline-color: var(--acid);
   outline-offset: 3px;
 }
 
@@ -286,17 +323,18 @@ a:not([class]):hover {
 .btn--acid:hover {
   background: var(--acid-press);
   transform: translateY(-2px);
-  box-shadow: 0 3px 6px rgba(32, 30, 18, 0.16), 0 22px 44px -12px rgba(150, 152, 0, 0.58);
+  box-shadow: var(--shadow-lift);
 }
 
 .btn--stone {
   background: var(--stone-raised-2);
   color: var(--ink);
+  border: 1px solid var(--stone-line);
   box-shadow: var(--shadow-plate);
 }
 
 .btn--stone:hover {
-  background: #eae7db;
+  background: var(--stone-raised);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lift);
 }

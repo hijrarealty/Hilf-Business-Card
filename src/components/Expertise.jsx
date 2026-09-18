@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import Icon from './Icon';
 import { expertise } from '../data/profile';
 import { useReveal } from '../lib/motion';
@@ -13,6 +13,23 @@ function Chip({ chip, openId, setOpenId }) {
   const id = useId();
   const open = openId === id;
   const ref = useRef(null);
+  const cardRef = useRef(null);
+
+  // Keep the open card inside the viewport: measure it centred on its chip,
+  // then nudge it sideways by however much it overhangs either edge.
+  useLayoutEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.setProperty('--dx', '0px');
+    if (!open) return;
+    const margin = 12;
+    const r = card.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    let dx = 0;
+    if (r.left < margin) dx = margin - r.left;
+    else if (r.right > vw - margin) dx = vw - margin - r.right;
+    card.style.setProperty('--dx', `${Math.round(dx)}px`);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -46,7 +63,11 @@ function Chip({ chip, openId, setOpenId }) {
         aria-expanded={open}
         aria-controls={`${id}-card`}
         onClick={() => setOpenId(open ? null : id)}
-        onFocus={() => setOpenId(id)}
+        // Keyboard focus only. A tap focuses the button AND clicks it, so
+        // opening on every focus let the click close the card straight away.
+        onFocus={(e) => {
+          if (e.currentTarget.matches(':focus-visible')) setOpenId(id);
+        }}
       >
         <Icon name={chip.icon} size={22} />
         <span className="xp__chip-sr">{chip.title}</span>
@@ -55,7 +76,7 @@ function Chip({ chip, openId, setOpenId }) {
         </span>
       </button>
 
-      <span className="xp__card plate" id={`${id}-card`} data-open={open} role="tooltip">
+      <span ref={cardRef} className="xp__card plate" id={`${id}-card`} data-open={open} role="tooltip">
         <strong>{chip.title}</strong>
         <span>{chip.body}</span>
       </span>
@@ -70,7 +91,7 @@ export default function Expertise() {
   const [openId, setOpenId] = useState(null);
 
   return (
-    <section id="expertise" className="section xp" aria-labelledby="xp-title">
+    <section id="expertise" className="section xp theme-dark" aria-labelledby="xp-title">
       <h2 id="xp-title" className="sr-only">
         {expertise.title}
       </h2>

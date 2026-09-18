@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Icon from './Icon';
 import SocialButtons from './SocialButtons';
-import { nav, person, stats } from '../data/profile';
+import { nav, person, stats, phone, phoneDisplay } from '../data/profile';
 import './mobilebar.css';
 
 export default function MobileBar({ active, onJump, visible, menuOpen, setMenuOpen }) {
@@ -93,8 +93,15 @@ export default function MobileBar({ active, onJump, visible, menuOpen, setMenuOp
         </div>
       </div>
 
-      <div className="mbar">
-        <SocialButtons variant="bar" />
+      <div className="mbar theme-dark">
+        <SocialButtons variant="bar">
+          <a className="social social--call" href={`tel:${phone}`} aria-label={`Call Asif on ${phoneDisplay}`}>
+            <span className="social__glyph">
+              <Icon name="phone" size={19} />
+            </span>
+            <span className="social__label">Call</span>
+          </a>
+        </SocialButtons>
       </div>
     </>
   );

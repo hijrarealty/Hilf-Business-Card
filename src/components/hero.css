@@ -9,6 +9,11 @@
   align-items: flex-end;
   overflow: hidden;
   isolation: isolate;
+  /* Shared by the wordmark and the surname under it, so the two stay
+     locked together at every breakpoint. */
+  --mark-top: 4.5svh;
+  --mark-size: max(5.5rem, min(40vw, 64svh));
+  --mark-lh: 0.78;
 }
 
 /* ---- the wordmark ---- */
@@ -17,20 +22,55 @@
   z-index: 1;
   left: var(--gutter);
   right: var(--gutter);
-  top: 4.5svh;
+  top: var(--mark-top);
   display: flex;
   justify-content: space-between;
   color: var(--acid);
-  font-size: max(5.5rem, min(40vw, 64svh));
+  font-size: var(--mark-size);
   font-weight: 700;
-  line-height: 0.78;
+  line-height: var(--mark-lh);
   /* Letters are distributed, not tracked — tracking does not apply between
      flex items. Distribution is what holds the word to the full measure at
      every viewport, which is the wordmark's defining behaviour. */
   user-select: none;
 }
 
-/* ---- the portrait ---- */
+/* The rest of the name, right-aligned under the end of the wordmark. */
+.hero__surname {
+  position: absolute;
+  z-index: 1;
+  right: var(--gutter);
+  top: calc(var(--mark-top) + var(--mark-size) * var(--mark-lh) + var(--mark-size) * 0.02);
+  color: var(--acid);
+  /* Sized to the width of the F above it, so it never reaches the trait
+     plate that sits left of the F. */
+  font-size: clamp(1.1rem, 2.3vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ---- the portrait ----
+   The subject wears black. On a near-black indigo ground the shoulders
+   would disappear and leave a floating head, so a soft light bloom sits
+   behind the figure to give the silhouette an edge to read against. */
+.hero__portrait::before {
+  content: '';
+  position: absolute;
+  inset: -6% -14% -2%;
+  z-index: -1;
+  background: radial-gradient(
+    52% 46% at 50% 52%,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.06) 46%,
+    rgba(255, 255, 255, 0) 72%
+  );
+  pointer-events: none;
+}
+
 .hero__portrait {
   position: absolute;
   z-index: 2;
@@ -66,9 +106,10 @@
   column-gap: clamp(0.75rem, 1.5vw, 1.5rem);
 }
 
-/* ---- nav straddling the portrait ---- */
+/* ---- nav straddling the portrait ----
+   Row 9, not 8: the surname under the wordmark owns the band above it. */
 .hero__nav {
-  grid-row: 8;
+  grid-row: 9;
   display: flex;
   align-items: center;
   gap: clamp(0.85rem, 2vw, 2rem);
@@ -127,9 +168,9 @@
 }
 
 /* ---- stat plates ----
-   One plate material across the whole page: raised stone, light top edge,
-   diffuse warm shadow. Translucent so the portrait and the wordmark read
-   faintly through, as they do behind the reference's plates. */
+   One plate material across the whole page: a thin wash of half-white
+   over a blur, edged with a brighter hairline. Translucent so the
+   wordmark and the portrait read through. */
 .hero__stats {
   grid-column: 3 / span 2;
   grid-row: 8 / span 4;
@@ -159,16 +200,14 @@
   margin-left: 2.1rem;
 }
 
-/* Acid fill, ink stroke: the reference's yellow-numeral-on-light-plate
-   look, with the stroke carrying the contrast the fill cannot. */
+/* Half-white on indigo clears 14:1 unaided, so the numerals need no
+   outline — the stroke the light theme required is gone. */
 .hero__stat strong {
   color: var(--acid);
   font-size: clamp(1.6rem, 2.6vw, 2.35rem);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.9;
-  -webkit-text-stroke: 1.2px var(--ink);
-  paint-order: stroke fill;
 }
 
 .hero__stat span {
@@ -208,21 +247,19 @@
   color: var(--ink);
 }
 
-/* Acid mark beside its own written label — decorative, never load-bearing.
-   Weighted up from the set's 1.75 default: at 16px a hairline stroke has
-   none of the mass the reference's solid glyphs carry. */
+/* Mark beside its own written label — decorative, never load-bearing.
+   Weighted up from the set's 1.75 default so it carries visual mass. */
 .hero__traits svg {
   color: var(--acid);
   stroke-width: 2.4;
   flex: none;
-  filter: drop-shadow(0 0 0.5px rgba(32, 30, 18, 0.55));
 }
 
 /* ---- headline + CTAs, sitting over the shirt ---- */
 /* Sits low enough that the first line starts at the chin, never across the face. */
 .hero__core {
   grid-column: 4 / span 5;
-  grid-row: 7 / span 5;
+  grid-row: 8 / span 5;
   align-self: center;
   justify-self: center;
   display: flex;
@@ -233,7 +270,8 @@
   position: relative;
 }
 
-/* Soft scrim so white type keeps ≥4.5:1 wherever the portrait is light. */
+/* Scrim for where the headline crosses skin — mid-tone under half-white
+   is the one place the type would otherwise lose contrast. */
 .hero__core::before {
   content: '';
   position: absolute;
@@ -251,11 +289,28 @@
 .hero__headline {
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: var(--ink);
   font-size: clamp(2.4rem, 5.6vw, 4.9rem);
   font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.052em;
+}
+
+/* Company lockup under the title — the logo's own mark, in light. */
+.hero__company {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: calc(clamp(1rem, 2.5svh, 1.9rem) * -0.4);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-2);
+}
+
+.hero__company img {
+  height: 1.7rem;
+  width: auto;
 }
 
 .hero__cta {
@@ -303,17 +358,25 @@
     grid-column: 1 / span 3;
   }
 
+  /* Starts below the surname, which on this width sits over the same columns. */
   .hero__traits {
     grid-column: 10 / span 3;
+    grid-row: 8 / span 3;
+    align-self: start;
+    margin-top: 2rem;
     justify-self: end;
+    gap: 0.2rem;
+    padding: 0.7rem 1rem;
   }
 
   .hero__core {
     grid-column: 4 / span 6;
   }
 
+  /* Three columns, not four: the company line and the wider CTA pair
+     push the core's right edge past column nine. */
   .hero__intro {
-    grid-column: 9 / span 4;
+    grid-column: 10 / span 3;
   }
 }
 
@@ -327,8 +390,8 @@
 
 /* Tablet — plates drop to the base. */
 @media (max-width: 900px) {
-  .hero__mark {
-    top: 8svh;
+  .hero {
+    --mark-top: 8svh;
   }
 
   .hero__portrait {
@@ -376,10 +439,16 @@
     padding-bottom: 0;
   }
 
-  .hero__mark {
-    top: 3.5svh;
-    font-size: min(42vw, 26svh);
-    line-height: 0.8;
+  .hero {
+    --mark-top: 3.5svh;
+    --mark-size: min(42vw, 26svh);
+    --mark-lh: 0.8;
+  }
+
+  /* Small on the phone, so it lands on the ground beside the head
+     rather than across the face. */
+  .hero__surname {
+    font-size: max(0.8rem, calc(var(--mark-size) * 0.1));
   }
 
   /* One source of truth: the stage's padding-top positions the headline
@@ -514,8 +583,8 @@
     height: min(80svh, 28rem);
   }
 
-  .hero__mark {
-    font-size: clamp(4rem, 17vw, 12rem);
+  .hero {
+    --mark-size: clamp(4rem, 17vw, 12rem);
   }
 }
 

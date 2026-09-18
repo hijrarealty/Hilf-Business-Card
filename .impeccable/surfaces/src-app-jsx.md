@@ -43,3 +43,16 @@ Discharged. Finish review run against five DPR-2 captures in `.impeccable/review
 Accepted and applied: one stone plate material across the whole page (hero plates now translucent stone compositing to `#ccc7b8`, against the reference's sampled `#CFC7BA`); five distinct drawn trait marks; `®` removed from the personal wordmark; marquee edge fade widened; mobile hero furniture left-anchored with the traits restored to a single vertical list.
 
 DESIGN.md and `.impeccable/design.json` regenerated from the shipped artifact after the fixes landed. Shipping rasters carry their provenance in README.md.
+
+## Amendment — palette inversion (client-directed, 2026-09-17)
+
+The OWN-WORLD block above describes the original warm-stone ground and acid-yellow signal. The client has since replaced both, and that instruction supersedes the block:
+
+- Ground: deep indigo `#05005C` (was warm stone `#D3CFBE`).
+- Signal: half-white `#F2EFE6` (was acid `#FCFF2A`) — wordmark, primary button, numerals, active nav, timeline spine.
+- Foreground: the same half-white stepped down by alpha.
+- Hero headline now reads "Senior Chartering Manager", one grid row lower.
+
+What carries over unchanged: the composition, the one-plate glass material (now light-on-dark), the motion system, and every layout and breakpoint decision. Consequences recorded in DESIGN.md: outlined display type retired (14.5:1 unaided), and a light bloom added behind the black-clothed portrait so it does not sink into the ground.
+
+Future work should treat the indigo/half-white palette as the binding world; the OWN-WORLD block is retained only as the record of where the direction started.

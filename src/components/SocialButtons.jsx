@@ -3,12 +3,12 @@ import { socials } from '../data/profile';
 import './social.css';
 
 /**
- * The five contact routes. One component, three renderings:
+ * The contact routes. One component, three renderings:
  *   compact — icon-only row for the desktop rail
  *   bar     — the sticky mobile action bar
  *   full    — the contact section's primary buttons
  */
-export default function SocialButtons({ variant = 'compact' }) {
+export default function SocialButtons({ variant = 'compact', children }) {
   return (
     <ul className={`socials socials--${variant}`}>
       {socials.map((s) => (
@@ -21,13 +21,12 @@ export default function SocialButtons({ variant = 'compact' }) {
             aria-label={
               s.id === 'email' ? `Email ${s.handle}` : `${s.label} — opens in a new tab`
             }
-            data-placeholder={s.isPlaceholder || undefined}
           >
             <span className="social__glyph">
               <Icon name={s.id} size={variant === 'full' ? 22 : 19} />
             </span>
 
-            {variant === 'bar' && <span className="social__label">{s.label}</span>}
+            {variant === 'bar' && <span className="social__label">{s.short ?? s.label}</span>}
 
             {variant === 'full' && (
               <>
@@ -43,6 +42,7 @@ export default function SocialButtons({ variant = 'compact' }) {
           </a>
         </li>
       ))}
+      {children && <li>{children}</li>}
     </ul>
   );
 }

@@ -4,27 +4,15 @@
  */
 
 /* ------------------------------------------------------------------ *
- *  CONTACT — the five buttons
+ *  CONTACT — the four buttons
  *
- *  ⚠️  ONLY `linkedin` IS CONFIRMED. Replace the four placeholders below
- *      with real destinations before publishing.
- *
- *      whatsapp  — digits only, country code first, no +, spaces or dashes
- *                  e.g. UAE mobile 050 123 4567  →  '971501234567'
- *      instagram — the handle without the @
- *      facebook  — the profile slug from facebook.com/<slug>
- *      email     — the address to receive enquiries
+ *      whatsapp — digits only, country code first, no +, spaces or dashes
  * ------------------------------------------------------------------ */
 const CONTACT_RAW = {
-  whatsapp: '971500000000', // PLACEHOLDER
-  instagram: 'asifbinhossain', // PLACEHOLDER
-  facebook: 'asifbinhossain', // PLACEHOLDER
-  linkedin: 'asifbh', // confirmed
-  email: 'asif@example.com', // PLACEHOLDER
+  whatsapp: '971504020908',
+  linkedin: 'asifbh',
+  email: 'asif@hilfshipping.com',
 };
-
-/** Anything still matching these is a placeholder and is flagged in the console. */
-const PLACEHOLDERS = ['971500000000', 'asifbinhossain', 'asif@example.com'];
 
 export const socials = [
   {
@@ -121,8 +109,8 @@ export const person = {
   role: 'Senior Chartering Manager',
   company: company.legalName,
   location: 'Dubai, United Arab Emirates',
-  signoff: ['The chartering desk.', "That's Asif."],
-  headline: ['Dry Bulk,', 'Chartered', 'Differently.'],
+  signoff: ['Chartering desk,', 'HILF Shipping LLC.'],
+  headline: ['Senior', 'Chartering', 'Manager'],
   intro:
     'Fixing dry bulk tonnage at HILF Shipping in Dubai — the right vessel at the right time, and a voyage kept clean long after the deal is done.',
   /** Each trait carries its own drawn mark — see Icon.jsx for the set. */
@@ -309,19 +297,5 @@ export const services = {
 
 export const contact = {
   title: ['Have a cargo', 'or a vessel?'],
-  body: 'Dry bulk moves on WhatsApp and email at odd hours. Pick whichever is easiest — all five reach me.',
+  body: 'Dry bulk moves on WhatsApp and email at odd hours. Call me directly, or save my details straight to your phone.',
 };
-
-/* Dev-time nudge so the placeholders do not quietly ship. */
-if (import.meta.env?.DEV) {
-  const pending = socials.filter((s) => s.isPlaceholder).map((s) => s.label);
-  if (pending.length) {
-    console.warn(
-      `[profile] Placeholder contact links still in place: ${pending.join(', ')}. ` +
-        'Update CONTACT_RAW in src/data/profile.js before publishing.'
-    );
-  }
-  if (voices.synthetic) {
-    console.warn('[profile] Voices section contains SYNTHETIC placeholder testimonials. Replace or remove before publishing.');
-  }
-}

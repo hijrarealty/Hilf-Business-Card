@@ -71,7 +71,7 @@ const STAFF = [
     name: 'Hameed Abdullah',
     givenName: 'Hameed',
     familyName: 'Abdullah',
-    role: 'Managing Director',
+    role: 'Founder & CEO',
     phone: '971545400107',
     phoneDisplay: '+971 54 540 0107',
     whatsapp: '971545400107',

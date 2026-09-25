@@ -1,5 +1,5 @@
 import Icon from './Icon';
-import { person, company, phone, phoneDisplay, routes } from '../data/profile';
+import { company } from '../data/profile';
 import { useReveal } from '../lib/motion';
 import { saveContact } from '../lib/vcard';
 import logoLight from '../assets/hilf-logo-light.webp';
@@ -16,16 +16,17 @@ import './card.css';
  * The office is not on this section. It is one button beside the company
  * website at the foot of the page, where the rest of HILF lives.
  */
-export default function Card() {
+export default function Card({ employee }) {
   const ref = useReveal();
+  const { routes } = employee;
 
   return (
     <section id="card" ref={ref} className="card theme-dark" aria-labelledby="card-name" data-reveal>
       <header className="card__head">
         <h1 id="card-name" className="card__name">
-          {person.name}
+          {employee.name}
         </h1>
-        <p className="card__role">{person.role}</p>
+        <p className="card__role">{employee.role}</p>
 
         <p className="card__at">
           <img src={logoLight} width="319" height="240" alt="" />
@@ -34,18 +35,18 @@ export default function Card() {
       </header>
 
       <div className="card__actions">
-        <a className="btn btn--acid" href={`tel:${phone}`}>
+        <a className="btn btn--acid" href={`tel:${employee.tel}`}>
           <Icon name="phone" size={17} />
           Call
         </a>
-        <button className="btn btn--stone" onClick={saveContact}>
+        <button className="btn btn--stone" onClick={() => saveContact(employee)}>
           <Icon name="download" size={17} />
           Save contact
         </button>
       </div>
 
       {/* Printed, not a control — the number a card is expected to show. */}
-      {/* <p className="card__number">{phoneDisplay}</p> */}
+      {/* <p className="card__number">{employee.phoneDisplay}</p> */}
 
       <p className="reg" aria-hidden="true">
         <span>Contact</span>

@@ -6,10 +6,10 @@ import { office } from './data/profile';
 import './App.css';
 
 /**
- * The digital business card behind the QR code.
+ * One employee's digital business card, behind the QR code on their card.
  * HILF logo motion → the card → the company. Two sections, no more.
  */
-export default function App() {
+export default function App({ employee }) {
   const [revealed, setRevealed] = useState(false);
   const reveal = useCallback(() => setRevealed(true), []);
 
@@ -23,17 +23,22 @@ export default function App() {
 
       {/* Inert until the intro hands over, so nothing behind it takes focus. */}
       <main id="main" className="shell" inert={revealed ? undefined : ''}>
-        <Card />
+        <Card employee={employee} />
         <Company />
-
-        {/* Plain text, not a link: the one route to the site is the
-            button above it, and this line must not become a second. */}
-        <footer className="foot">
-          <p>
-            © {new Date().getFullYear()} {office.label}
-          </p>
-        </footer>
+        <Footer />
       </main>
     </>
+  );
+}
+
+/* Plain text, not a link: the one route to the site is the button above
+   it, and this line must not become a second. */
+export function Footer() {
+  return (
+    <footer className="foot">
+      <p>
+        © {new Date().getFullYear()} {office.label}
+      </p>
+    </footer>
   );
 }

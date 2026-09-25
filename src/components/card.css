@@ -143,6 +143,18 @@
   --brand-ink: #fff;
 }
 
+/* A person on the "card not found" list — the card's own paper, like Call. */
+.route--person {
+  --brand: #f5f5f2;
+  --brand-ink: #0b0c1f;
+}
+
+.route__glyph--initials {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
 /* The colour sweeps in from the left on press or hover. */
 .route::before {
   content: '';

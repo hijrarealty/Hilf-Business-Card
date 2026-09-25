@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "source": "/contacts/(.*)",
+      "headers": [{ "key": "Content-Type", "value": "text/vcard; charset=utf-8" }]
+    }
+  ]
+}

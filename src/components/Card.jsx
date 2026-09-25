@@ -1,7 +1,7 @@
 import Icon from './Icon';
 import { company } from '../data/profile';
 import { useReveal } from '../lib/motion';
-import { saveContact } from '../lib/vcard';
+import { saveContactLink } from '../lib/vcard';
 import logoLight from '../assets/hilf-logo-light.webp';
 import './card.css';
 
@@ -19,6 +19,7 @@ import './card.css';
 export default function Card({ employee }) {
   const ref = useReveal();
   const { routes } = employee;
+  const save = saveContactLink(employee);
 
   return (
     <section id="card" ref={ref} className="card theme-dark" aria-labelledby="card-name" data-reveal>
@@ -39,10 +40,12 @@ export default function Card({ employee }) {
           <Icon name="phone" size={17} />
           Call
         </a>
-        <button className="btn btn--stone" onClick={() => saveContact(employee)}>
+        {/* A link, like Call: it opens the phone's new-contact screen with
+            the number filled in. See lib/vcard.js for how, per platform. */}
+        <a className="btn btn--stone" href={save.href} download={save.download}>
           <Icon name="download" size={17} />
           Save contact
-        </button>
+        </a>
       </div>
 
       {/* Printed, not a control — the number a card is expected to show. */}

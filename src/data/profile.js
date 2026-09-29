@@ -56,9 +56,9 @@ export const office = {
 const STAFF = [
   {
     slug: 'asif',
-    name: 'Asif bin Hossain',
+    name: 'Asif Bin Hossain',
     givenName: 'Asif',
-    familyName: 'bin Hossain',
+    familyName: 'Bin Hossain',
     role: 'Senior Chartering Manager',
     phone: '971504020908',
     phoneDisplay: '+971 50 402 0908',
@@ -74,7 +74,7 @@ const STAFF = [
     role: 'Founder & CEO',
     phone: '971545400107',
     phoneDisplay: '+971 54 540 0107',
-    whatsapp: '971545400107',
+    whatsapp: '919884552834',
     email: 'hameed@hilfshipping.com',
     // The company page, as supplied — not a personal profile.
     linkedin: 'https://www.linkedin.com/company/hilf-shipping-llc-fz/',

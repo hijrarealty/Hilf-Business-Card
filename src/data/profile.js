@@ -162,18 +162,18 @@ function buildRoutes(e) {
       handle: e.email,
       href: `mailto:${e.email}`,
     },
+    e.teams && {
+      id: 'teams',
+      label: 'Microsoft Teams',
+      handle: e.teams,
+      href: `https://teams.microsoft.com/l/chat/0/0?users=${encodeURIComponent(e.teams)}`,
+      external: true,
+    },
     e.linkedin && {
       id: 'linkedin',
       label: 'LinkedIn',
       handle: e.linkedinHandle || handleFromUrl(e.linkedin),
       href: e.linkedin,
-      external: true,
-    },
-    e.teams && {
-      id: 'teams',
-      label: 'Microsoft Teams',
-      handle: 'Chat on Teams',
-      href: `https://teams.microsoft.com/l/chat/0/0?users=${encodeURIComponent(e.teams)}`,
       external: true,
     },
   ].filter(Boolean);

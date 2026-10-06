@@ -52,6 +52,8 @@ export const office = {
  *    linkedin      full URL. Leave out and the LinkedIn button goes.
  *    linkedinHandle  optional — the line under "LinkedIn". Worked out
  *                  from the URL when left out ("/in/asifbh").
+ *    teams         the email they sign in to Microsoft Teams with. Leave
+ *                  out and the Teams button goes.
  * ------------------------------------------------------------------ */
 const STAFF = [
   {
@@ -65,6 +67,7 @@ const STAFF = [
     whatsapp: '971504020908',
     email: 'asif@hilfshipping.com',
     linkedin: 'https://www.linkedin.com/in/asifbh/',
+    teams: 'asif.asll@hotmail.com',
   },
   {
     slug: 'hameed',
@@ -79,6 +82,7 @@ const STAFF = [
     // The company page, as supplied — not a personal profile.
     linkedin: 'https://www.linkedin.com/company/hilf-shipping-llc-fz/',
     linkedinHandle: 'HILF Shipping LLC FZ',
+    teams: 'hameedj6@gmail.com',
   },
   {
     slug: 'jana-alam',
@@ -91,6 +95,7 @@ const STAFF = [
     whatsapp: '971542008753',
     email: 'janaalam@hilfshipping.com',
     linkedin: 'https://www.linkedin.com/in/md-jana-alam-294944248/',
+    teams: 'janaalam2929@gmail.com',
   },
   {
     slug: 'akash',
@@ -103,6 +108,7 @@ const STAFF = [
     whatsapp: '971585267580',
     email: 'akash@hilfshipping.com',
     linkedin: 'https://www.linkedin.com/in/akash-akkiparambath-1a5a7221b/',
+    teams: 'akash_a@outlook.com',
   },
   {
     slug: 'jabir',
@@ -115,6 +121,7 @@ const STAFF = [
     whatsapp: '971585984747',
     email: 'jabir@hilfshipping.com',
     linkedin: 'https://www.linkedin.com/in/jabirnizam/',
+    teams: 'Jabirmohamed98@gmail.com',
   },
 ];
 
@@ -160,6 +167,13 @@ function buildRoutes(e) {
       label: 'LinkedIn',
       handle: e.linkedinHandle || handleFromUrl(e.linkedin),
       href: e.linkedin,
+      external: true,
+    },
+    e.teams && {
+      id: 'teams',
+      label: 'Microsoft Teams',
+      handle: 'Chat on Teams',
+      href: `https://teams.microsoft.com/l/chat/0/0?users=${encodeURIComponent(e.teams)}`,
       external: true,
     },
   ].filter(Boolean);

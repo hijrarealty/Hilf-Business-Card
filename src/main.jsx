@@ -15,6 +15,18 @@ import { findEmployee, pageMeta } from './data/profile';
 const slug = decodeURIComponent(window.location.pathname.split('/')[1] || '');
 const employee = findEmployee(slug);
 
+/**
+ * A reload always starts at the top — the logo intro, then the card. The
+ * browser would otherwise put the visitor back where they were scrolled
+ * (e.g. down at the company section), and a #company in the address would
+ * jump there too, so drop the hash.
+ */
+if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+if (window.location.hash) {
+  window.history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+window.scrollTo(0, 0);
+
 document.title = employee ? pageMeta(employee).title : 'Card not found — HILF Shipping';
 
 createRoot(document.getElementById('root')).render(

@@ -143,6 +143,11 @@
   --brand-ink: #fff;
 }
 
+.route--teams {
+  --brand: #5059c9;
+  --brand-ink: #fff;
+}
+
 /* A person on the "card not found" list — the card's own paper, like Call. */
 .route--person {
   --brand: #f5f5f2;

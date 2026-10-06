@@ -50,8 +50,8 @@ export const office = {
  *    whatsapp      same format. Leave out and the WhatsApp button goes.
  *    phoneDisplay  the number as people read it
  *    linkedin      full URL. Leave out and the LinkedIn button goes.
- *    linkedinHandle  optional — the line under "LinkedIn". Worked out
- *                  from the URL when left out ("/in/asifbh").
+ *    linkedinHandle  optional — the line under "LinkedIn". Their name
+ *                  when left out; set it if the profile is named differently.
  *    teams         the email they sign in to Microsoft Teams with. Leave
  *                  out and the Teams button goes.
  * ------------------------------------------------------------------ */
@@ -132,13 +132,16 @@ const STAFF = [
  */
 const DEFAULT_SLUG = 'asif';
 
-/** "/in/asifbh" from the full profile URL. */
-const handleFromUrl = (url) => {
-  try {
-    return new URL(url).pathname.replace(/\/$/, '');
-  } catch {
-    return 'View profile';
+/** "+971 50 402 0908" from "971504020908". Other countries: "+91 98845 52834". */
+const formatNumber = (digits) => {
+  const d = String(digits).replace(/\D/g, '');
+  if (d.startsWith('971') && d.length === 12) {
+    return `+971 ${d.slice(3, 5)} ${d.slice(5, 8)} ${d.slice(8)}`;
   }
+  if (d.startsWith('91') && d.length === 12) {
+    return `+91 ${d.slice(2, 7)} ${d.slice(7)}`;
+  }
+  return `+${d}`;
 };
 
 /**
@@ -152,7 +155,7 @@ function buildRoutes(e) {
     e.whatsapp && {
       id: 'whatsapp',
       label: 'WhatsApp',
-      handle: 'Message directly',
+      handle: formatNumber(e.whatsapp),
       href: `https://wa.me/${e.whatsapp}`,
       external: true,
     },
@@ -172,7 +175,7 @@ function buildRoutes(e) {
     e.linkedin && {
       id: 'linkedin',
       label: 'LinkedIn',
-      handle: e.linkedinHandle || handleFromUrl(e.linkedin),
+      handle: e.linkedinHandle || e.name,
       href: e.linkedin,
       external: true,
     },

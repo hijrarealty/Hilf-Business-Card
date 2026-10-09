@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Digital business card for Asif bin Hossain — Senior Chartering Manager, HILF Shipping.",
+  "description": "Digital business card for Asif bin Hossain — Senior Manager - Dry Cargo Chartering, HILF Shipping.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

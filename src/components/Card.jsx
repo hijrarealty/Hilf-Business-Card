@@ -58,13 +58,9 @@ export default function Card({ employee }) {
       </p>
 
       <ul className="routes">
-        {routes.map((r, i) => (
-          <li key={r.id}>
-            <a
-              className={`route route--${r.id}`}
-              href={r.href}
-              {...(r.external && { target: '_blank', rel: 'noopener noreferrer' })}
-            >
+        {routes.map((r, i) => {
+          const body = (
+            <>
               <span className="route__glyph">
                 <Icon name={r.id} size={21} />
               </span>
@@ -75,9 +71,27 @@ export default function Card({ employee }) {
               <span className="route__index" aria-hidden="true">
                 {String(i + 1).padStart(2, '0')}
               </span>
-            </a>
-          </li>
-        ))}
+            </>
+          );
+          return (
+            <li key={r.id}>
+              {r.href ? (
+                <a
+                  className={`route route--${r.id}`}
+                  href={r.href}
+                  {...(r.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                >
+                  {body}
+                </a>
+              ) : (
+                // No link yet: the button keeps its place but goes nowhere.
+                <span className={`route route--${r.id} route--pending`} aria-disabled="true">
+                  {body}
+                </span>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

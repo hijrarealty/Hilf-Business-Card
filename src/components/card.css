@@ -273,6 +273,28 @@
   opacity: 0.7;
 }
 
+/* A route whose link is not known yet: in its place, but inert. */
+.route.route--pending {
+  opacity: 0.45;
+  cursor: default;
+  color: var(--ink);
+  transform: none;
+  box-shadow: var(--shadow-plate);
+}
+
+.route--pending::before {
+  display: none;
+}
+
+.route.route--pending .route__glyph {
+  background: var(--stone-sunk);
+}
+
+.route.route--pending .route__handle {
+  color: var(--ink-3);
+  opacity: 1;
+}
+
 /* ==================================================================
    Above phone width the card simply centres. It never grows into a
    two-column layout — there is not enough on it to fill one.

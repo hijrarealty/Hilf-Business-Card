@@ -54,6 +54,8 @@ export const office = {
  *                  when left out; set it if the profile is named differently.
  *    teams         the email they sign in to Microsoft Teams with. Leave
  *                  out and the Teams button goes.
+ *                  Set linkedin or teams to '' to keep its button on the
+ *                  card, greyed out, until the link is known.
  * ------------------------------------------------------------------ */
 const STAFF = [
   {
@@ -61,7 +63,7 @@ const STAFF = [
     name: 'Asif Bin Hossain',
     givenName: 'Asif',
     familyName: 'Bin Hossain',
-    role: 'Senior Chartering Manager',
+    role: 'Senior Manager - Dry Cargo Chartering',
     phone: '971504020908',
     phoneDisplay: '+971 50 402 0908',
     whatsapp: '971504020908',
@@ -74,7 +76,7 @@ const STAFF = [
     name: 'Hameed Abdullah',
     givenName: 'Hameed',
     familyName: 'Abdullah',
-    role: 'Founder & CEO',
+    role: 'CEO / Founder',
     phone: '971545400107',
     phoneDisplay: '+971 54 540 0107',
     whatsapp: '919884552834',
@@ -89,7 +91,7 @@ const STAFF = [
     name: 'Md Jana Alam',
     givenName: 'Md Jana',
     familyName: 'Alam',
-    role: 'Operations Director',
+    role: 'Director - Dry Cargo Operations',
     phone: '971542008753',
     phoneDisplay: '+971 54 200 8753',
     whatsapp: '971542008753',
@@ -102,7 +104,7 @@ const STAFF = [
     name: 'Akash Akkiparambath',
     givenName: 'Akash',
     familyName: 'Akkiparambath',
-    role: 'Operations Manager',
+    role: 'Manager - Dry Cargo Chartering / Operations',
     phone: '971585267580',
     phoneDisplay: '+971 58 526 7580',
     whatsapp: '971585267580',
@@ -115,13 +117,27 @@ const STAFF = [
     name: 'Jabir Mohamed',
     givenName: 'Jabir',
     familyName: 'Mohamed',
-    role: 'Assistant Chartering Manager',
+    role: 'Manager - Dry Cargo Chartering',
     phone: '971585984747',
     phoneDisplay: '+971 58 598 4747',
     whatsapp: '971585984747',
     email: 'jabir@hilfshipping.com',
     linkedin: 'https://www.linkedin.com/in/jabirnizam/',
     teams: 'Jabirmohamed98@gmail.com',
+  },
+  {
+    slug: 'shamsudeen',
+    name: 'Mohammed Shamsudeen',
+    givenName: 'Mohammed',
+    familyName: 'Shamsudeen',
+    role: 'Senior Manager - Dry Cargo Chartering',
+    phone: '971542008754',
+    phoneDisplay: '+971 54 200 8754',
+    whatsapp: '971542008754',
+    email: 'shams@hilfshipping.com',
+    // Still to come — '' keeps the button on the card, greyed out.
+    linkedin: '',
+    teams: '',
   },
 ];
 
@@ -144,11 +160,15 @@ const formatNumber = (digits) => {
   return `+${d}`;
 };
 
+/** The line under a button whose link is not known yet. */
+const PENDING = 'Coming soon';
+
 /**
  * Contact routes — one button each, in the order they appear.
  * Call and Save contact are not in this list: they are the two actions a
  * scanned card is for, so they sit at the top of the card as a pair.
- * A route the employee has no value for is simply left off.
+ * A route the employee has no value for is simply left off; one set to ''
+ * stays, with no href, and the card draws it greyed out.
  */
 function buildRoutes(e) {
   return [
@@ -165,17 +185,17 @@ function buildRoutes(e) {
       handle: e.email,
       href: `mailto:${e.email}`,
     },
-    e.teams && {
+    e.teams != null && {
       id: 'teams',
       label: 'Microsoft Teams',
-      handle: e.teams,
-      href: `https://teams.microsoft.com/l/chat/0/0?users=${encodeURIComponent(e.teams)}`,
+      handle: e.teams || PENDING,
+      href: e.teams && `https://teams.microsoft.com/l/chat/0/0?users=${encodeURIComponent(e.teams)}`,
       external: true,
     },
-    e.linkedin && {
+    e.linkedin != null && {
       id: 'linkedin',
       label: 'LinkedIn',
-      handle: e.linkedinHandle || e.name,
+      handle: e.linkedin ? e.linkedinHandle || e.name : PENDING,
       href: e.linkedin,
       external: true,
     },

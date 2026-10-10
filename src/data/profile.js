@@ -150,7 +150,7 @@ const STAFF = [
     whatsapp: '971589842522',
     email: 'saleem@yourofficepartners.com',
     linkedin: 'https://www.linkedin.com/in/mohamedsaleem-taxconsultant/',
-    teams: 'saleem@yourofficepartners.com',
+    teams: 'saleem@hilfshipping.com',
   },
 ];
 

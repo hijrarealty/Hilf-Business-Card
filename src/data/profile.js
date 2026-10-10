@@ -139,6 +139,19 @@ const STAFF = [
     linkedin: '',
     teams: '',
   },
+  {
+    slug: 'saleem',
+    name: 'Mohamed Saleem',
+    givenName: 'Mohamed',
+    familyName: 'Saleem',
+    role: 'Director - Finance / HR',
+    phone: '971589842522',
+    phoneDisplay: '+971 58 984 2522',
+    whatsapp: '971589842522',
+    email: 'saleem@yourofficepartners.com',
+    linkedin: 'https://www.linkedin.com/in/mohamedsaleem-taxconsultant/',
+    teams: 'saleem@yourofficepartners.com',
+  },
 ];
 
 /**

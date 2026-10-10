@@ -148,7 +148,7 @@ const STAFF = [
     phone: '971589842522',
     phoneDisplay: '+971 58 984 2522',
     whatsapp: '971589842522',
-    email: 'saleem@yourofficepartners.com',
+    email: 'saleem@hilfshipping.com',
     linkedin: 'https://www.linkedin.com/in/mohamedsaleem-taxconsultant/',
     teams: 'saleem@hilfshipping.com',
   },

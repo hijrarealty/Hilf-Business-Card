@@ -40,8 +40,8 @@ export default function Card({ employee }) {
           <Icon name="phone" size={17} />
           Call
         </a>
-        {/* A link, like Call: it opens the phone's new-contact screen with
-            the details filled in. See lib/vcard.js for how, per platform. */}
+        {/* A link, like Call: it hands the phone the full contact card.
+            See lib/vcard.js for how, per platform. */}
         <a className="btn btn--stone" href={save.href} download={save.download}>
           <Icon name="download" size={17} />
           Save contact

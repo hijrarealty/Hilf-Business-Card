@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { employees, pageMeta } from './src/data/profile.js';
-import { contactPath, phoneOnlyVCard } from './src/lib/vcard.js';
+import { contactPath, contactVCard } from './src/lib/vcard.js';
 
 const escapeHtml = (s) =>
   String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -54,12 +54,12 @@ function employeePages() {
 }
 
 /**
- * Every employee's contact file — contacts/<slug>.vcf, the phone number
- * only — for the Save contact button (see src/lib/vcard.js). Written into
+ * Every employee's contact file — contacts/<slug>.vcf, the full
+ * card — for the Save contact button (see src/lib/vcard.js). Written into
  * the build, and served by the dev server too so the button works locally.
  */
 function contactFiles() {
-  const byPath = new Map(employees.map((e) => [contactPath(e), phoneOnlyVCard(e)]));
+  const byPath = new Map(employees.map((e) => [contactPath(e), contactVCard(e)]));
   return {
     name: 'contact-files',
     configureServer(server) {

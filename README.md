@@ -98,7 +98,7 @@ Each appears once, in one place.
 | Button | Link | Where |
 |---|---|---|
 | Call | `tel:+971504020908` | the card, paired with Save contact |
-| Save contact | opens the phone's new-contact screen with name, company, role, number, email and address filled in | the card, paired with Call |
+| Save contact | the full contact card (name, company, role, number, email, address) | the card, paired with Call |
 | WhatsApp | `https://wa.me/971504020908` | the card |
 | Email | `mailto:asif@hilfshipping.com` | the card |
 | LinkedIn | profile URL | the card |
@@ -108,11 +108,11 @@ Each appears once, in one place.
 The phone number is printed once, under the Call / Save contact pair, as text
 rather than a second control.
 
-Save contact pre-fills the whole card (name, company, role, mobile, email, office
-address); the visitor just taps Save. On Android it opens the Create contact screen
-directly (an intent link, no download); on
-iPhone it opens `/contacts/<slug>.vcf`, which Safari shows as the native contact
-card; on a computer it downloads that file. The `.vcf` files are written at build
+Save contact hands over the whole card (name, company, role, mobile, email, office
+address). On iPhone it opens `/contacts/<slug>.vcf`, which Safari shows as the
+native contact card. On Android and computers it downloads that file; on Android,
+tapping Open on the download shows the Contacts import screen. (Android browsers
+can't open the Create contact screen from a web link.) The `.vcf` files are written at build
 time from `profile.js` — see [`src/lib/vcard.js`](src/lib/vcard.js).
 
 ---

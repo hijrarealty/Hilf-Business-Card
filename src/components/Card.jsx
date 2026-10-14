@@ -41,7 +41,7 @@ export default function Card({ employee }) {
           Call
         </a>
         {/* A link, like Call: it opens the phone's new-contact screen with
-            the number filled in. See lib/vcard.js for how, per platform. */}
+            the details filled in. See lib/vcard.js for how, per platform. */}
         <a className="btn btn--stone" href={save.href} download={save.download}>
           <Icon name="download" size={17} />
           Save contact

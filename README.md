@@ -98,7 +98,7 @@ Each appears once, in one place.
 | Button | Link | Where |
 |---|---|---|
 | Call | `tel:+971504020908` | the card, paired with Save contact |
-| Save contact | opens the phone's new-contact screen with the number filled in | the card, paired with Call |
+| Save contact | opens the phone's new-contact screen with name, company, role, number, email and address filled in | the card, paired with Call |
 | WhatsApp | `https://wa.me/971504020908` | the card |
 | Email | `mailto:asif@hilfshipping.com` | the card |
 | LinkedIn | profile URL | the card |
@@ -108,8 +108,9 @@ Each appears once, in one place.
 The phone number is printed once, under the Call / Save contact pair, as text
 rather than a second control.
 
-Save contact pre-fills the phone number only; the visitor adds a name and taps
-Save. On Android it opens the Create contact screen directly (an intent link); on
+Save contact pre-fills the whole card (name, company, role, mobile, email, office
+address); the visitor just taps Save. On Android it opens the Create contact screen
+directly (an intent link, no download); on
 iPhone it opens `/contacts/<slug>.vcf`, which Safari shows as the native contact
 card; on a computer it downloads that file. The `.vcf` files are written at build
 time from `profile.js` — see [`src/lib/vcard.js`](src/lib/vcard.js).
@@ -157,7 +158,7 @@ src/
   App.jsx                IntroSplash → Card, Company, footer
   data/profile.js        all content and links
   lib/motion.js          the reveal: one IntersectionObserver, no motion library
-  lib/vcard.js           the Save contact link per device, and the phone-only contact file
+  lib/vcard.js           the Save contact link per device, and the contact file
   components/
     IntroSplash          the logo page and the sequence timing
     LogoMark             the HILF mark as SVG (generated)
@@ -179,4 +180,4 @@ every target at least 56px tall.
 | ≤ 639px | Full-bleed single column |
 | ≥ 640px | The same column, centred at 30rem, with the name and the company section centred. It never becomes two columns — there is not enough on a business card to fill one. |
 #   H i l f - B u s i n e s s - C a r d  
- 
+ 

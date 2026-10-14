@@ -1,30 +1,52 @@
+import { company, office } from '../data/profile.js';
+
 /**
  * Save contact — open the phone's own "new contact" screen with the
- * employee's number already filled in. The visitor adds a name if they
- * want and taps Save. Nothing else is pre-filled, by design.
+ * employee already filled in: name, company, role, mobile, email, office
+ * address and website. The visitor just taps Save.
  *
  * No web link opens that screen on every phone the way tel: opens the
- * dialer, so each platform gets the route it does support:
+ * dialer, so each platform gets the route it does support — and none of
+ * them leaves a file behind on a phone:
  *
  *   Android  an intent link straight to the Create contact screen with the
- *            number in it (Chrome, Samsung Internet). A browser that can't
- *            follow it falls back to the contact file below.
+ *            details in it (Chrome, Samsung Internet). Nothing downloads.
+ *            A browser that can't follow it (some in-app browsers) falls
+ *            back to the contact file below.
  *   iPhone   the contact file, opened as a page rather than downloaded.
  *            Safari shows it as the native contact card: Create New Contact.
  *   Desktop  the contact file, downloaded.
  *
  * The contact files are written at build time — dist/contacts/<slug>.vcf —
- * by vite.config.js, which is why this file has no imports: the build
- * reads it too. A real file on the site, not one made in the browser, is
- * what lets iPhone open it directly instead of asking to download it.
+ * by vite.config.js, which reads this file too. A real file on the site,
+ * not one made in the browser, is what lets iPhone open it directly
+ * instead of asking to download it.
  */
 
 /** Where an employee's contact file is served. */
 export const contactPath = (e) => `/contacts/${e.slug}.vcf`;
 
-/** The contact file: the phone number only. */
-export function phoneOnlyVCard(e) {
-  return ['BEGIN:VCARD', 'VERSION:3.0', 'N:;;;;', 'FN:', `TEL;TYPE=CELL:${e.tel}`, 'END:VCARD', ''].join('\r\n');
+/** vCard 3.0 text values escape backslash, comma, semicolon and newline. */
+const esc = (v) => String(v).replace(/[\\,;]/g, (m) => `\\${m}`).replace(/\n/g, '\\n');
+
+/** The contact file: everything a business card carries. */
+export function contactVCard(e) {
+  return [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    `N:${esc(e.familyName)};${esc(e.givenName)};;;`,
+    `FN:${esc(e.name)}`,
+    `ORG:${esc(company.name)}`,
+    `TITLE:${esc(e.role)}`,
+    `TEL;TYPE=CELL,VOICE:${e.tel}`,
+    e.email && `EMAIL;TYPE=INTERNET,WORK:${e.email}`,
+    `ADR;TYPE=WORK:;;${esc(office.street)};${esc(office.city)};;;${esc(office.country)}`,
+    `URL:${company.site}`,
+    e.linkedin && `X-SOCIALPROFILE;TYPE=linkedin:${e.linkedin}`,
+    'END:VCARD',
+  ]
+    .filter(Boolean)
+    .join('\r\n') + '\r\n';
 }
 
 const ua = () => (typeof navigator === 'undefined' ? '' : navigator.userAgent);
@@ -37,20 +59,31 @@ const isIOS = () =>
   (/Macintosh/i.test(ua()) && typeof navigator !== 'undefined' && navigator.maxTouchPoints > 1);
 
 /**
- * Android's Insert-contact screen, addressed as a link.
- * phone_type 2 is "Mobile" (ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE).
+ * Android's Insert-contact screen, addressed as a link. The extras are
+ * ContactsContract.Intents.Insert's keys. phone_type 2 is Mobile and
+ * email_type 2 is Work (ContactsContract.CommonDataKinds.*.TYPE_*).
+ * The website and LinkedIn have no Insert key; they travel in the file.
  */
 function androidInsertIntent(e) {
   const fallback = `${window.location.origin}${contactPath(e)}`;
+  const s = (key, value) => value && `S.${key}=${encodeURIComponent(value)}`;
   return [
     'intent:#Intent',
     'action=android.intent.action.INSERT',
     'type=vnd.android.cursor.dir/raw_contact',
-    `S.phone=${encodeURIComponent(e.tel)}`,
+    s('name', e.name),
+    s('company', company.name),
+    s('job_title', e.role),
+    s('phone', e.tel),
     'i.phone_type=2',
-    `S.browser_fallback_url=${encodeURIComponent(fallback)}`,
+    s('email', e.email),
+    e.email && 'i.email_type=2',
+    s('postal', `${office.street}, ${office.city}, ${office.country}`),
+    s('browser_fallback_url', fallback),
     'end',
-  ].join(';');
+  ]
+    .filter(Boolean)
+    .join(';');
 }
 
 /**

@@ -88,10 +88,10 @@ const STAFF = [
   },
   {
     slug: 'jana-alam',
-    name: 'Md Jana Alam',
-    givenName: 'Md Jana',
+    name: 'MD Jana Alam',
+    givenName: 'MD Jana',
     familyName: 'Alam',
-    role: 'Director - Dry Cargo Operations',
+    role: 'Director - Dry Cargo Chartering / Operations',
     phone: '971542008753',
     phoneDisplay: '+971 54 200 8753',
     whatsapp: '971542008753',

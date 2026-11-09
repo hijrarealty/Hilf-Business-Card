@@ -91,7 +91,7 @@ const STAFF = [
     name: 'MD Jana Alam',
     givenName: 'MD Jana',
     familyName: 'Alam',
-    role: 'Chief Operation Officer',
+    role: 'Director - Dry Cargo Chartering / Operations',
     phone: '971542008753',
     phoneDisplay: '+971 54 200 8753',
     whatsapp: '971542008753',
